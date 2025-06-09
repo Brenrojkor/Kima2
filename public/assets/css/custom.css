@@ -1,0 +1,30 @@
+.menu-link.active {
+    background-color: #007bff; /* Fondo azul para el elemento activo */
+    border-radius: 5px;
+  }
+
+  .user-box {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: Arial, sans-serif;
+    z-index: 9999;
+}
+
+.logout-btn {
+    text-decoration: none;
+}
+
+.logout-btn img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    filter: invert(1);
+}
