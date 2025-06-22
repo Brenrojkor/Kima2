@@ -1,9 +1,4 @@
 <?php
-session_start();
-if (!isset($_SESSION['nombre'])) {
-    header("Location: /Kima/app/Views/login/login.php"); // Redirige si no está logueado
-    exit();
-}
 
 $idUsuario = $_SESSION['usuario_id'] ?? null;
 ?>
