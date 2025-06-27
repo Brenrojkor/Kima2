@@ -114,7 +114,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
                         <!--begin::Title-->
                         <div class="d-flex align-items-center">
                             <i class="fas fa-users fs-2 me-2"></i>
-                            <h1 class="page-heading text-gray-900 fw-bold fs-3 my-0">Clientes</h1>
+                            <h1 class="page-heading fw-bold fs-3 my-0">Clientes</h1>
                         </div>
                         <!--end::Title-->
 

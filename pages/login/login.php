@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['nombre'] = $user['Nombre'];
             $_SESSION['email'] = $user['Email'];
             $_SESSION['rol'] = $user['Rol'];
+            $_SESSION['darkmode'] = $user['darkmode'];
 
             // Redirigir al usuario a index.php
             header('Location: /Kima/index.php');

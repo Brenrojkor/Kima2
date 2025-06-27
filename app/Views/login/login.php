@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     // Preparar y ejecutar la consulta
-    $query = "SELECT ID, Nombre, Email, Contraseña, Rol, ImagenPerfil FROM Usuarios WHERE Email = :email";
+    $query = "SELECT ID, Nombre, Email, Contraseña, Rol, ImagenPerfil, darkmode FROM Usuarios WHERE Email = :email";
     $stmt = $conn->prepare($query);
     $stmt->execute([":email" => $email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['email'] = $user['Email'];
             $_SESSION['rol'] = $user['Rol'];
             $_SESSION['ImagenPerfil'] = $user['ImagenPerfil'] ?? null;
+            $_SESSION['darkmode'] = $user['darkmode'] ?? 0;
 
             // Redirigir al usuario a index.php
             header('Location: /Kima/public/index.php');

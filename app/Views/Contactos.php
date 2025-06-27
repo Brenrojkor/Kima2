@@ -155,7 +155,7 @@ try {
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <div class="d-flex align-items-center">
                             <i class="fas fa-users fs-2 me-2"></i>
-                            <h1 class="page-heading text-gray-900 fw-bold fs-3 my-0">Contactos</h1>
+                            <h1 class="page-heading  fw-bold fs-3 my-0">Contactos</h1>
                         </div>
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <li class="breadcrumb-item text-muted">

@@ -36,14 +36,15 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
             <!--begin::Toolbar-->
             <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
                 <!--begin::Toolbar container-->
-                <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
+                <div id="kt_app_toolbar_container" style="margin-top: 25px;"
+                    class="app-container container-xxl d-flex flex-stack">
                     <!--begin::Page title-->
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3"
                         style="margin-top: 0; padding-top: 0;">
                         <!--begin::Title-->
                         <div class="d-flex align-items-center">
                             <i class="fas fa-list-alt fs-2 me-2"></i>
-                            <h1 class="page-heading text-gray-900 fw-bold fs-3 my-0">Requisito</h1>
+                            <h1 class="page-heading fw-bold fs-3 my-0">Requisito</h1>
                         </div>
                         <!--end::Title-->
 
@@ -321,7 +322,9 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
                             paging: true,
                             searching: true,
                             info: true,
-                            order: [[0, 'desc']],
+                            order: [
+                                [0, 'desc']
+                            ],
                             language: {
                                 url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
                             }
@@ -353,6 +356,12 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
 
                 loadRequisitos();
             });
+
+            const icono = document.querySelector('#menu_requisitos').previousElementSibling.querySelector('i');
+            const span = document.getElementById('menu_requisitos');
+
+            icono.style.color = 'white';
+            span.style.color = 'white';
 
             const flexRootElements = document.querySelectorAll('.flex-root');
 

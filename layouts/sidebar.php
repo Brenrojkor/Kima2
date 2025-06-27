@@ -1,6 +1,14 @@
 <?php
+session_start();
+if (!isset($_SESSION['nombre'])) {
+    header("Location: /Kima/app/Views/login/login.php"); // Redirige si no está logueado
+    exit();
+}
 
 $idUsuario = $_SESSION['usuario_id'] ?? null;
+
+$darkmode = $_SESSION['darkmode'] ?? 0;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +38,28 @@ $idUsuario = $_SESSION['usuario_id'] ?? null;
     <link href="/Kima/public/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="/Kima/public/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <link href="/Kima/public/assets/css/custom.css" rel="stylesheet" type="text/css" />
+
+    <style>
+    .app-header {
+        background-color: <?php echo $darkmode ? '#0d0e12': 'white';
+        ?> !important;
+    }
+
+    body {
+        background-color: <?php echo $darkmode ? '#0d0e12': 'white';
+        ?> !important;
+    }
+
+    .page-heading {
+        color: <?php echo $darkmode ? '#fff': '#071437';
+        ?> !important;
+    }
+
+    h1 {
+        color: <?php echo $darkmode ? '#fff': '#071437';
+        ?> !important;
+    }
+    </Style>
     <!--end::Global Stylesheets Bundle-->
     <script>
     // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }
@@ -433,6 +463,37 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
                                                 <!--end::Menu-->
                                             </div>
                                         </div>
+
+                                        <style>
+                                        /* Estilo del switch cuando el modo oscuro está activo */
+                                        .form-switch .form-check-input {
+                                            --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='white'/%3e%3c/svg%3e");
+                                            background-color: #343a40 !important;
+                                            border-color: #666 !important;
+                                        }
+
+                                        /* Estilo del switch cuando está activado */
+                                        .form-switch .form-check-input:checked {
+                                            background-color: #0d6efd !important;
+                                            background-position: right center;
+                                        }
+                                        </style>
+
+                                        <!--begin::Fixed Dark Mode Switch-->
+                                        <div style="position: absolute; bottom: 10px; margin-left: 15px; width: 65%; padding: 10px;"
+                                            class="text-center">
+                                            <form method="POST"
+                                                action="/Kima/app/Controllers/UsuariosController.php?action=cambiarTema">
+                                                <label class="form-check form-switch menu-link">
+                                                    <input class="form-check-input" type="checkbox" name="darkmode"
+                                                        value="1" onchange="this.form.submit()"
+                                                        <?php echo ($_SESSION['darkmode'] ?? 0) ? 'checked' : ''; ?>>
+                                                    <span class="form-check-label">Modo oscuro</span>
+                                                </label>
+                                            </form>
+                                        </div>
+                                        <!--end::Fixed Dark Mode Switch-->
+
                                     </div>
                                     <!--end::Sidebar menu-->
                                 </div>

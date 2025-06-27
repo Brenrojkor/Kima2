@@ -259,7 +259,7 @@ try {
                         <!--begin::Title-->
                         <div class="d-flex align-items-center">
                             <i class="fas fa-ticket-alt fs-2 me-2"></i>
-                            <h1 class="page-heading text-gray-900 fw-bold fs-3 my-0">Tickets</h1>
+                            <h1 class="page-heading fw-bold fs-3 my-0">Tickets</h1>
                         </div>
                         <!--end::Title-->
 

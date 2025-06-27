@@ -216,6 +216,30 @@ class UsuarioController {
             }
         }
     }
+
+
+    public function cambiarTema() {
+        session_start();
+
+        $darkmode = isset($_POST['darkmode']) ? 1 : 0;
+        $usuarioId = $_SESSION['usuario_id'] ?? null;
+
+        if (!$usuarioId) {
+            echo json_encode(["status" => "error", "message" => "Usuario no autenticado"]);
+            exit();
+        }
+
+        // Llama al modelo para actualizar en SQL Server
+        $this->model->actualizarTemaUsuario($usuarioId, $darkmode);
+
+        // Actualiza la sesión inmediatamente
+        $_SESSION['darkmode'] = $darkmode;
+
+        // Redirige a la misma página
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit();
+    }
+
     
 
     

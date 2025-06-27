@@ -6,6 +6,9 @@ require_once "../config/database.php";
 
 $usuarioID = $_SESSION['usuario_id'] ?? null;
 
+$darkmode = $_SESSION['darkmode'] ?? 0;
+
+
 $cantidadTickets = 0;
 
 if ($usuarioID) {
@@ -67,7 +70,7 @@ if ($cantidadTickets > 0) {
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3"></div>
                     <!--end::Page title-->
                     <!--begin::Actions-->
-                    <div class="d-flex align-items-center gap-2 gap-lg-3">
+                    <div class="d-flex align-items-center gap-2 gap-lg-3" style="margin-top: 25px;">
                         <!--<a href="apps/projects/list.html" class="btn btn-sm fw-bold btn-secondary">Mis Proyectos</a>
                         <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
                             data-bs-target="#kt_modal_create_project">Nuevo Proyecto</a>--->

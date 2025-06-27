@@ -1,6 +1,6 @@
 <?php
 // Configuración de la base de datos
-$serverName = "DESKTOP-ADPOLBP\\SQLEXPRESS";
+$serverName = "(localdb)\\Local";
 $database = "Kima";
 $username = "kima";
 $password = "Inicio01";
