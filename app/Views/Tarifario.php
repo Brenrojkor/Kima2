@@ -370,7 +370,7 @@ try {
     let chart;
 
     function cargarEstadisticasCategorias() {
-        $.get("/Kima/app/Controllers/TarifarioController.php?action=obtenerEstadisticasCategorias", function(response) {
+        $.get("/Kima/Kima2/app/Controllers/TarifarioController.php?action=obtenerEstadisticasCategorias", function(response) {
             const res = JSON.parse(response);
 
             if (res.status === "success") {
@@ -419,7 +419,7 @@ try {
 
         $('#modalHistorial').on('shown.bs.modal', function() {
             $.ajax({
-                url: "/Kima/app/Controllers/TarifarioController.php?action=getHistorialJson",
+                url: "/Kima/Kima2/app/Controllers/TarifarioController.php?action=getHistorialJson",
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -596,8 +596,8 @@ try {
             };
 
             let url = (action === "update") ?
-                "/Kima/app/Controllers/TarifarioController.php?action=update" :
-                "/Kima/app/Controllers/TarifarioController.php?action=create";
+                "/Kima/Kima2/app/Controllers/TarifarioController.php?action=update" :
+                "/Kima/Kima2/app/Controllers/TarifarioController.php?action=create";
 
             $.ajax({
                 type: "POST",
@@ -638,7 +638,7 @@ try {
 
         function loadTarifario() {
             $.ajax({
-                url: "/Kima/app/Controllers/TarifarioController.php?action=getAllJson",
+                url: "/Kima/Kima2/app/Controllers/TarifarioController.php?action=getAllJson",
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -749,7 +749,7 @@ try {
             if (confirm("¿Estás seguro de eliminar este servicio?")) {
                 $.ajax({
                     type: "POST",
-                    url: "/Kima/app/Controllers/TarifarioController.php?action=delete",
+                    url: "/Kima/Kima2/app/Controllers/TarifarioController.php?action=delete",
                     data: {
                         id: id
                     },
@@ -792,7 +792,7 @@ try {
 
             $.ajax({
                 type: "POST",
-                url: "/Kima/app/Controllers/TarifarioController.php?action=createCategoria",
+                url: "/Kima/Kima2/app/Controllers/TarifarioController.php?action=createCategoria",
                 data: {
                     nombre_categoria: nombre
                 },
@@ -815,7 +815,7 @@ try {
 
 
         function cargarEstadisticasPorFecha(inicio, fin) {
-            $.get(`/Kima/app/Controllers/TarifarioController.php?action=estadisticasPorFecha&inicio=${inicio}&fin=${fin}`,
+            $.get(`/Kima/Kima2/app/Controllers/TarifarioController.php?action=estadisticasPorFecha&inicio=${inicio}&fin=${fin}`,
                 function(response) {
                     const res = JSON.parse(response);
 
@@ -901,20 +901,20 @@ try {
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
 
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="/Kima/public/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="/Kima/public/assets/js/scripts.bundle.js"></script>
+    <script src="/Kima/Kima2/public/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/Kima/Kima2/public/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="/Kima/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="/Kima/Kima2/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="/Kima/public/assets/js/custom/apps/file-manager/list.js"></script>
-    <script src="/Kima/public/assets/js/widgets.bundle.js"></script>
-    <script src="/Kima/public/assets/js/custom/widgets.js"></script>
-    <script src="/Kima/public/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/create-app.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/users-search.js"></script>
+    <script src="/Kima/Kima2/public/assets/js/custom/apps/file-manager/list.js"></script>
+    <script src="/Kima/Kima2/public/assets/js/widgets.bundle.js"></script>
+    <script src="/Kima/Kima2/public/assets/js/custom/widgets.js"></script>
+    <script src="/Kima/Kima2/public/assets/js/custom/apps/chat/chat.js"></script>
+    <script src="/Kima/Kima2/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="/Kima/Kima2/public/assets/js/custom/utilities/modals/create-app.js"></script>
+    <script src="/Kima/Kima2/public/assets/js/custom/utilities/modals/users-search.js"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 </body>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "/Kima/config/database.php"; // Conexión con SQL Server
+require_once "/Kima/Kima2/config/database.php"; // Conexión con SQL Server
 
 $error = '';
 
@@ -44,14 +44,14 @@ $title = "Iniciar Sesión"; // Título dinámico
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-    <link href="/Kima/assets/css/style.bundle.css" rel="stylesheet">
+    <link href="/Kima/Kima2/assets/css/style.bundle.css" rel="stylesheet">
 </head>
 <body>
     <div class="d-flex flex-column flex-root vh-100">
         <div class="d-flex flex-column flex-lg-row flex-column-fluid align-items-center justify-content-center">
             <div class="bg-body d-flex flex-column flex-center rounded-4 w-md-600px p-10 text-center">
                 <div class="d-flex flex-center flex-column align-items-stretch h-lg-100 w-md-400px">
-                    <form class="form w-100" method="POST" action="/Kima/pages/login/login.php">
+                    <form class="form w-100" method="POST" action="/Kima/Kima2/pages/login/login.php">
                         <div class="text-center mb-11">
                             <h1 class="text-gray-900 fw-bolder mb-3">Iniciar Sesión</h1>
                             <?php if (!empty($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>

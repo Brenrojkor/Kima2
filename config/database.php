@@ -1,6 +1,6 @@
 <?php
 // Configuración de la base de datos
-$serverName = "(localdb)\\Local";
+$serverName = "DESKTOP-53HSUSK";
 $database = "Kima";
 $username = "kima";
 $password = "Inicio01";

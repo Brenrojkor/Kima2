@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['nombre'])) {
-    header("Location: /Kima/app/Views/login/login.php"); // Redirige si no está logueado
+    header("Location: /Kima/Kima2/app/Views/login/login.php"); // Redirige si no está logueado
     exit();
 }
 
@@ -23,21 +23,21 @@ $darkmode = $_SESSION['darkmode'] ?? 0;
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
     <link rel="canonical" href="http://preview.keenthemes.comlayouts/dark-sidebar.html" />
-    <link rel="shortcut icon" href="/Kima/public/assets/media/logos/ticket-de-soporte.png" />
+    <link rel="shortcut icon" href="/Kima/Kima2/public/assets/media/logos/ticket-de-soporte.png" />
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Vendor Stylesheets(used for this page only)-->
-    <link href="/Kima/public/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet"
+    <link href="/Kima/Kima2/public/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet"
         type="text/css" />
-    <link href="/Kima/public/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="/Kima/Kima2/public/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <!--end::Vendor Stylesheets-->
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-    <link href="/Kima/public/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="/Kima/public/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="/Kima/public/assets/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="/Kima/Kima2/public/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="/Kima/Kima2/public/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="/Kima/Kima2/public/assets/css/custom.css" rel="stylesheet" type="text/css" />
 
     <style>
     .app-header {
@@ -123,8 +123,8 @@ $darkmode = $_SESSION['darkmode'] ?? 0;
             <span>Bienvenido,
                 <?php
 $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerfil']) 
-    ? '/Kima/uploads/usuarios/' . htmlspecialchars($_SESSION['ImagenPerfil']) 
-    : '/Kima/public/assets/media/cuenta.png';
+    ? '/Kima/Kima2/uploads/usuarios/' . htmlspecialchars($_SESSION['ImagenPerfil']) 
+    : '/Kima/Kima2/public/assets/media/cuenta.png';
 ?>
 
                 <img src="<?= $imagenPerfil ?>" alt="Foto de perfil"
@@ -134,7 +134,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
 
 
                 <a
-                    href="/Kima/app/Views/usuarios_perfil.php?id=<?= $idUsuario ?>"><?php echo htmlspecialchars($_SESSION['nombre']); ?></a>
+                    href="/Kima/Kima2/app/Views/usuarios_perfil.php?id=<?= $idUsuario ?>"><?php echo htmlspecialchars($_SESSION['nombre']); ?></a>
             </span>
             <a href="#" class="logout-btn" id="btnLogout">
                 <i class="fa-solid fa-right-from-bracket"></i> Salir
@@ -163,7 +163,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
                     <!--begin::Mobile logo-->
                     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
                         <a href="index.html" class="d-lg-none">
-                            <img alt="Logo" src="/Kima/public/assets/media/logos/logo_kima_v1.png" class="h-40px" />
+                            <img alt="Logo" src="/Kima/Kima2/public/assets/media/logos/logo_kima_v1.png" class="h-40px" />
                         </a>
                     </div>
                     <!--end::Mobile logo-->
@@ -186,7 +186,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
                                     class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <!--begin:Menu link-->
                                     <div class="menu-item me-0 me-lg-2">
-                                        <a href="/Kima/public/index.php" class="menu-link">
+                                        <a href="/Kima/Kima2/public/index.php" class="menu-link">
                                             <span class="menu-title">Inicio</span>
                                         </a>
                                     </div>
@@ -200,7 +200,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
                                     class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <!--begin:Menu link-->
                                     <div class="menu-item me-0 me-lg-2">
-                                        <a href="/Kima/app/Views/Comunicados.php" class="menu-link">
+                                        <a href="/Kima/Kima2/app/Views/Comunicados.php" class="menu-link">
                                             <span class="menu-title">Comunicados</span>
                                         </a>
                                     </div>
@@ -217,7 +217,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
                                     class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <!--begin:Menu link-->
                                     <div class="menu-item me-0 me-lg-2">
-                                        <a href="/Kima/app/Views/Contactos.php" class="menu-link">
+                                        <a href="/Kima/Kima2/app/Views/Contactos.php" class="menu-link">
                                             <span class="menu-title">Contactos</span>
                                         </a>
                                     </div>
@@ -230,7 +230,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
                                     class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
                                     <!--begin:Menu link-->
                                     <div class="menu-item me-0 me-lg-2">
-                                        <a href="/Kima/app/Views/clientes.php" class="menu-link">
+                                        <a href="/Kima/Kima2/app/Views/clientes.php" class="menu-link">
                                             <span class="menu-title">Clientes</span>
                                         </a>
                                     </div>
@@ -242,7 +242,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
                                     class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
                                     <!--begin:Menu link-->
                                     <div class="menu-item me-0 me-lg-2">
-                                        <a href="/Kima/app/Views/Tickets.php" class="menu-link" a>
+                                        <a href="/Kima/Kima2/app/Views/Tickets.php" class="menu-link" a>
                                             <span class="menu-title">Tickets</span>
 
                                             <a>
@@ -255,7 +255,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
                                     class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
                                     <!--begin:Menu item-->
                                     <div class="menu-item me-0 me-lg-2">
-                                        <a href="/Kima/app/Views/Cotizacion.php" class="menu-link">
+                                        <a href="/Kima/Kima2/app/Views/Cotizacion.php" class="menu-link">
                                             <span class="menu-title">Cotización</span>
                                         </a>
                                     </div>
@@ -268,7 +268,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
                                     class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
                                     <!--begin:Menu item-->
                                     <div class="menu-item me-0 me-lg-2">
-                                        <a href="/Kima/app/Views/Tarifario.php" class="menu-link">
+                                        <a href="/Kima/Kima2/app/Views/Tarifario.php" class="menu-link">
                                             <span class="menu-title">Tarifario</span>
                                         </a>
                                     </div>
@@ -281,7 +281,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
                                     class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
                                     <!--begin:Menu link-->
                                     <div class="menu-item me-0 me-lg-2">
-                                        <a href="/Kima/app/Views/Requisitos.php" class="menu-link">
+                                        <a href="/Kima/Kima2/app/Views/Requisitos.php" class="menu-link">
                                             <span class="menu-title">Requisitos</span>
                                         </a>
                                     </div>
@@ -301,9 +301,9 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
                         <!--begin::Logo-->
                         <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
                             <a href="/Kima/public/index.php">
-                                <img alt="Logo" src="/Kima/public/assets/media/logos/logo_kima_v1.png"
+                                <img alt="Logo" src="/Kima/Kima2/public/assets/media/logos/logo_kima_v1.png"
                                     class="h-40px app-sidebar-logo-default" />
-                                <img alt="Logo" src="/Kima/public/assets/media/logos/logo_kima_v1.png"
+                                <img alt="Logo" src="/Kima/Kima2/public/assets/media/logos/logo_kima_v1.png"
                                     class="h-20px app-sidebar-logo-default" />
                             </a>
                         </div>
@@ -319,10 +319,10 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
                                 <!--begin::Logo-->
                                 <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
                                     <!--begin::Logo image-->
-                                    <a href="/Kima/public/index.php">
-                                        <img alt="Logo" src="/Kima/public/assets/media/logos/logo_kima_v1.png"
+                                    <a href="/Kima/Kima2/public/index.php">
+                                        <img alt="Logo" src="/Kima/Kima2/public/assets/media/logos/logo_kima_v1.png"
                                             class="h-40px app-sidebar-logo-default" />
-                                        <img alt="Logo" src="/Kima/public/assets/media/logos/logo_kima_v1.png"
+                                        <img alt="Logo" src="/Kima/Kima2/public/assets/media/logos/logo_kima_v1.png"
                                             class="h-20px app-sidebar-logo-minimize" />
                                     </a>
 
@@ -368,7 +368,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
 
                                                     <!-- Opción: Inicio -->
                                                     <div class="menu-item mb-5">
-                                                        <a href="/Kima/public/index.php" class="menu-link">
+                                                        <a href="/Kima/Kima2/public/index.php" class="menu-link">
                                                             <span class="menu-icon">
                                                                 <i class="fas fa-home fs-2"></i>
                                                             </span>
@@ -378,7 +378,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
 
                                                     <!-- Opción: Comunicados -->
                                                     <div class="menu-item mb-5">
-                                                        <a href="/Kima/app/Views/comunicados.php" class="menu-link">
+                                                        <a href="/Kima/Kima2/app/Views/comunicados.php" class="menu-link">
                                                             <span class="menu-icon">
                                                                 <i class="fas fa-bell fs-2"></i>
                                                             </span>
@@ -389,7 +389,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
 
                                                     <!-- Opción: Contactos -->
                                                     <div class="menu-item mb-5">
-                                                        <a href="/Kima/app/Views/contactos.php" class="menu-link">
+                                                        <a href="/Kima/Kima2/app/Views/contactos.php" class="menu-link">
                                                             <span class="menu-icon">
                                                                 <i class="fas fa-address-book fs-2"></i>
                                                             </span>
@@ -400,7 +400,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
 
                                                     <!-- Opción: Clientes -->
                                                     <div class="menu-item mb-5">
-                                                        <a href="/Kima/app/Views/ListaClientes.php" class="menu-link">
+                                                        <a href="/Kima/Kima2/app/Views/ListaClientes.php" class="menu-link">
                                                             <span class="menu-icon">
                                                                 <i class="fas fa-users fs-2"></i>
                                                             </span>
@@ -410,7 +410,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
 
                                                     <!-- Opción: Tickets -->
                                                     <div class="menu-item mb-5">
-                                                        <a href="/Kima/app/Views/Tickets.php" class="menu-link">
+                                                        <a href="/Kima/Kima2/app/Views/Tickets.php" class="menu-link">
                                                             <span class="menu-icon">
                                                                 <i class="fas fa-ticket-alt fs-2"></i>
                                                             </span>
@@ -420,7 +420,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
 
                                                     <!-- Opción: Cotización -->
                                                     <div class="menu-item mb-5">
-                                                        <a href="/Kima/app/Views/cotizacion.php" class="menu-link">
+                                                        <a href="/Kima/Kima2/app/Views/cotizacion.php" class="menu-link">
                                                             <span class="menu-icon">
                                                                 <i class="fas fa-file-invoice fs-2"></i>
                                                             </span>
@@ -431,7 +431,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
 
                                                     <!-- Opción: Requisitos -->
                                                     <div class="menu-item mb-5">
-                                                        <a href="/Kima/app/Views/requisitos.php" class="menu-link">
+                                                        <a href="/Kima/Kima2/app/Views/requisitos.php" class="menu-link">
                                                             <span class="menu-icon">
                                                                 <i class="fas fa-list-alt fs-2"></i>
                                                             </span>
@@ -442,7 +442,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
 
                                                     <!-- Opción: Tarifario -->
                                                     <div class="menu-item mb-5">
-                                                        <a href="/Kima/app/Views/tarifario.php" class="menu-link">
+                                                        <a href="/Kima/Kima2/app/Views/tarifario.php" class="menu-link">
                                                             <span class="menu-icon">
                                                                 <i class="fas fa-wallet fs-2"></i>
                                                             </span>
@@ -452,7 +452,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
                                                     </div>
 
                                                     <div class="menu-item mb-5">
-                                                        <a href="/Kima/app/Views/Usuarios.php" class="menu-link">
+                                                        <a href="/Kima/Kima2/app/Views/Usuarios.php" class="menu-link">
                                                             <span class="menu-icon">
                                                                 <i class="fa-solid fa-user"></i>
                                                             </span>
@@ -483,7 +483,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
                                         <div style="position: absolute; bottom: 10px; margin-left: 15px; width: 65%; padding: 10px;"
                                             class="text-center">
                                             <form method="POST"
-                                                action="/Kima/app/Controllers/UsuariosController.php?action=cambiarTema">
+                                                action="/Kima/Kima2/app/Controllers/UsuariosController.php?action=cambiarTema">
                                                 <label class="form-check form-switch menu-link">
                                                     <input class="form-check-input" type="checkbox" name="darkmode"
                                                         value="1" onchange="this.form.submit()"
@@ -514,11 +514,11 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
     <!--begin::Javascript-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-    var hostUrl = "/Kima/public/assets/";
+    var hostUrl = "/Kima/Kima2/public/assets/";
 
     $(document).ready(function() {
         function cargarNotificaciones() {
-            $.get('/Kima/app/Controllers/TarifarioController.php?action=obtenerNotificaciones', function(
+            $.get('/Kima/Kima2/app/Controllers/TarifarioController.php?action=obtenerNotificaciones', function(
                 response) {
                 const res = JSON.parse(response);
                 $("#noti-count").text(res.total);
@@ -558,7 +558,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
         $(".notification-icon").click(function() {
             $("#noti-dropdown").toggle();
 
-            $.post('/Kima/app/Controllers/TarifarioController.php?action=marcarComoLeidas', function() {
+            $.post('/Kima/Kima2/app/Controllers/TarifarioController.php?action=marcarComoLeidas', function() {
                 $("#noti-count").text('0');
             });
         });
@@ -568,7 +568,7 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
             e.preventDefault();
             e.stopPropagation(); // ⛔️ Esto es lo que evita que el dropdown se cierre
 
-            $.get('/Kima/app/Controllers/TarifarioController.php?action=obtenerHistorialNotificaciones',
+            $.get('/Kima/Kima2/app/Controllers/TarifarioController.php?action=obtenerHistorialNotificaciones',
                 function(response) {
                     const res = JSON.parse(response);
                     let html = '';
@@ -616,17 +616,17 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "/Kima/app/Views/login/logout.php";
+                window.location.href = "/Kima/Kima2/app/Views/login/logout.php";
             }
         });
     });
     </script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="/Kima/public/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="/Kima/public/assets/js/scripts.bundle.js"></script>
+    <script src="/Kima/Kima2/public/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/Kima/Kima2/public/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="/Kima/public/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script src="/Kima/Kima2/public/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
@@ -638,16 +638,16 @@ $imagenPerfil = isset($_SESSION['ImagenPerfil']) && !empty($_SESSION['ImagenPerf
     <script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
-    <script src="/Kima/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="/Kima/Kima2/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="/Kima/public/assets/js/widgets.bundle.js"></script>
-    <script src="/Kima/public/assets/js/custom/widgets.js"></script>
-    <script src="/Kima/public/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/create-app.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/users-search.js"></script>
-    <script src="/Kima/public/assets/js/components/menu.js"></script>
+    <script src="/Kima/Kima2/public/assets/js/widgets.bundle.js"></script>
+    <script src="/Kima/Kima2/public/assets/js/custom/widgets.js"></script>
+    <script src="/Kima/Kima2/public/assets/js/custom/apps/chat/chat.js"></script>
+    <script src="/Kima/Kima2/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="/Kima/Kima2/public/assets/js/custom/utilities/modals/create-app.js"></script>
+    <script src="/Kima/Kima2/public/assets/js/custom/utilities/modals/users-search.js"></script>
+    <script src="/Kima/Kima2/public/assets/js/components/menu.js"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 </body>
