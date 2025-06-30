@@ -9,7 +9,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title; ?></title>
     <!-- Cargar CSS -->
-    <link href="/Kima/Kima2/public/assets/css/style.bundle.css" rel="stylesheet">
+    <link href="/public/assets/css/style.bundle.css" rel="stylesheet">
 
 
 </head>
@@ -605,7 +605,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
             let userID = $(this).data("id");
 
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/UsuariosController.php?action=getUserById",
+                url: "/app/Controllers/UsuariosController.php?action=getUserById",
                 type: "GET",
                 data: {
                     id: userID
@@ -637,7 +637,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
 
                 $.ajax({
                     type: "POST",
-                    url: "/Kima/Kima2/app/Controllers/UsuariosController.php?action=updateUsuario",
+                    url: "/app/Controllers/UsuariosController.php?action=updateUsuario",
                     data: formData,
                     dataType: "json",
                     success: function(response) {
@@ -666,7 +666,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
 
             $.ajax({
                 type: "POST",
-                url: "/Kima/Kima2/app/Controllers/UsuarioController.php?action=create",
+                url: "/app/Controllers/UsuarioController.php?action=create",
                 data: formData,
                 dataType: "json",
                 success: function(response) {
@@ -695,7 +695,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
 
             // Enviar la petición AJAX para eliminar el cliente
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/UsuariosController.php?action=deleteUser",
+                url: "/app/Controllers/UsuariosController.php?action=deleteUser",
                 type: "POST",
                 data: {
                     id: userID
@@ -720,7 +720,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
             console.log("Ejecutando cargarClientes()...");
 
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/UsuariosController.php?action=getAllJson",
+                url: "/app/Controllers/UsuariosController.php?action=getAllJson",
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -742,7 +742,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
                             <td>
                                 <button class="btn btn-icon btn-light-primary btn-edit" data-id="${c.ID}"><i class="fa fa-pencil"></i></button>
                                 <button class="btn btn-icon btn-light-danger btn-delete" data-id="${c.ID}"><i class="fa fa-trash"></i></button>
-                                <a href="/Kima/Kima2/app/Views/usuarios_perfil.php?id=${c.ID}" class="btn btn-icon btn-light-info"><i class="fa fa-eye"></i></a>
+                                <a href="/app/Views/usuarios_perfil.php?id=${c.ID}" class="btn btn-icon btn-light-info"><i class="fa fa-eye"></i></a>
                             </td>
                         </tr>`;
                         });
@@ -815,7 +815,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
 
             $.ajax({
                 type: "POST",
-                url: "/Kima/Kima2/app/Controllers/UsuariosController.php?action=create",
+                url: "/app/Controllers/UsuariosController.php?action=create",
                 data: formData,
                 dataType: "json",
                 success: function(response) {
@@ -881,7 +881,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
 
 <!--begin::Javascript-->
 <script>
-var hostUrl = "/Kima/Kima2/public/assets/";
+var hostUrl = "/public/assets/";
 </script>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -897,20 +897,20 @@ var hostUrl = "/Kima/Kima2/public/assets/";
 
 </script>
 <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-<script src="/Kima/Kima2/public/assets/plugins/global/plugins.bundle.js"></script>
+<script src="/public/assets/plugins/global/plugins.bundle.js"></script>
 <script src="/Kima/public/assets/js/scripts.bundle.js"></script>
 <!--end::Global Javascript Bundle-->
 <!--begin::Vendors Javascript(used for this page only)-->
-<script src="/Kima/Kima2/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+<script src="/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 <!--end::Vendors Javascript-->
 <!--begin::Custom Javascript(used for this page only)-->
-<script src="/Kima/Kima2/public/assets/js/custom/apps/file-manager/list.js"></script>
-<script src="/Kima/Kima2/public/assets/js/widgets.bundle.js"></script>
-<script src="/Kima/Kima2/public/assets/js/custom/widgets.js"></script>
-<script src="/Kima/Kima2/public/assets/js/custom/apps/chat/chat.js"></script>
-<script src="/Kima/Kima2/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-<script src="/Kima/Kima2/public/assets/js/custom/utilities/modals/create-app.js"></script>
-<script src="/Kima/Kima2/public/assets/js/custom/utilities/modals/users-search.js"></script>
+<script src="/public/assets/js/custom/apps/file-manager/list.js"></script>
+<script src="/public/assets/js/widgets.bundle.js"></script>
+<script src="/public/assets/js/custom/widgets.js"></script>
+<script src="/public/assets/js/custom/apps/chat/chat.js"></script>
+<script src="/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+<script src="/public/assets/js/custom/utilities/modals/create-app.js"></script>
+<script src="/public/assets/js/custom/utilities/modals/users-search.js"></script>
 <!--end::Custom Javascript-->
 <!--end::Javascript-->
 </body>

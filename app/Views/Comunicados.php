@@ -67,7 +67,7 @@ try {
                 <div id="kt_app_content_container" class="app-container container-xxl">
                     <!--begin::Card-->
                     <div class="card card-flush pb-0 bgi-position-y-center bgi-no-repeat mb-10"
-                        style="background-size: auto calc(100% + 10rem); background-position-x: 100%; background-image: url('/Kima/Kima2/assets/media/illustrations/sketchy-1/4.png')">
+                        style="background-size: auto calc(100% + 10rem); background-position-x: 100%; background-image: url('/assets/media/illustrations/sketchy-1/4.png')">
                         <!--begin::Card header-->
                         <div class="card-header pt-10">
                             <div class="d-flex align-items-center">
@@ -802,7 +802,7 @@ try {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/Kima/Kima2/app/Controllers/ComunicadosController.php?action=subirArchivo" class="dropzone"
+                    <form action="/app/Controllers/ComunicadosController.php?action=subirArchivo" class="dropzone"
                         id="formDropzone">
                         <div class="dz-message">
                             <span>Arrastra archivos aquí o haz clic para subir archivos pdf</span>
@@ -896,7 +896,7 @@ try {
 
 
     <script>
-    var hostUrl = "/Kima/Kima2/public/assets/";
+    var hostUrl = "/public/assets/";
     </script>
 
     <!-- jQuery (primero de todos) -->
@@ -928,7 +928,7 @@ try {
             $("#archivoIdRelacionar").val(archivoId);
 
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/ComunicadosController.php?action=obtenerCarpetasConArchivos",
+                url: "/app/Controllers/ComunicadosController.php?action=obtenerCarpetasConArchivos",
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -951,7 +951,7 @@ try {
             e.preventDefault();
             const formData = $(this).serialize();
 
-            $.post("/Kima/Kima2/app/Controllers/ComunicadosController.php?action=relacionarArchivoACarpeta",
+            $.post("/app/Controllers/ComunicadosController.php?action=relacionarArchivoACarpeta",
                 formData,
                 function(res) {
                     const response = JSON.parse(res);
@@ -993,7 +993,7 @@ try {
             $select.empty(); // Limpiar
 
             $.ajax({
-                url: '/Kima/Kima2/app/Controllers/ComunicadosController.php?action=listarArchivos',
+                url: '/app/Controllers/ComunicadosController.php?action=listarArchivos',
                 method: 'GET',
                 dataType: 'json',
                 success: function(res) {
@@ -1028,7 +1028,7 @@ try {
 
 
         $.ajax({
-            url: '/Kima/Kima2/app/Controllers/ComunicadosController.php?action=crearCarpetaConArchivos',
+            url: '/app/Controllers/ComunicadosController.php?action=crearCarpetaConArchivos',
             type: 'POST',
             data: formData,
             contentType: false,
@@ -1060,7 +1060,7 @@ try {
                             }
 
                             $.ajax({
-                                url: "/Kima/Kima2/app/Controllers/ComunicadosController.php?action=subirArchivo",
+                                url: "/app/Controllers/ComunicadosController.php?action=subirArchivo",
                                 type: "POST",
                                 data: formData,
                                 contentType: false,
@@ -1096,7 +1096,7 @@ try {
 
         function cargarComunicadosNew() {
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/ComunicadosController.php?action=obtenerComunicados",
+                url: "/app/Controllers/ComunicadosController.php?action=obtenerComunicados",
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -1226,7 +1226,7 @@ try {
         Dropzone.autoDiscover = false;
 
         let dropzoneInstance = new Dropzone("#formDropzone", {
-            url: "/Kima/Kima2/app/Controllers/ComunicadosController.php?action=subirArchivo",
+            url: "/app/Controllers/ComunicadosController.php?action=subirArchivo",
             paramName: "archivo",
             maxFilesize: 5,
             acceptedFiles: ".pdf",
@@ -1270,7 +1270,7 @@ try {
 
             // 🔍 Obtener info del archivo y carpeta antes de confirmar
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/ComunicadosController.php?action=obtenerInfoArchivo&id=" +
+                url: "/app/Controllers/ComunicadosController.php?action=obtenerInfoArchivo&id=" +
                     id,
                 type: "GET",
                 dataType: "json",
@@ -1289,7 +1289,7 @@ try {
                         if (confirm(mensaje)) {
                             // Si acepta, eliminar
                             $.ajax({
-                                url: "/Kima/Kima2/app/Controllers/ComunicadosController.php?action=eliminarComunicado",
+                                url: "/app/Controllers/ComunicadosController.php?action=eliminarComunicado",
                                 type: "POST",
                                 data: {
                                     id,
@@ -1334,7 +1334,7 @@ try {
 
             if (nuevoNombre && nuevoNombre !== nombreActual) {
                 $.ajax({
-                    url: "/Kima/Kima2/app/Controllers/ComunicadosController.php?action=renombrarComunicado",
+                    url: "/app/Controllers/ComunicadosController.php?action=renombrarComunicado",
                     type: "POST",
                     data: {
                         id,
@@ -1362,7 +1362,7 @@ try {
             let nombreCarpeta = prompt("Ingrese el nombre de la carpeta:");
             if (!nombreCarpeta) return;
 
-            $.post("/Kima/Kima2/app/Controllers/ComunicadosController.php?action=crearCarpeta", {
+            $.post("/app/Controllers/ComunicadosController.php?action=crearCarpeta", {
                 nombre: nombreCarpeta
             }, function() {
                 cargarComunicados();
@@ -1373,13 +1373,13 @@ try {
     });
     </script>
     <script>
-    var hostUrl = "/Kima/Kima2/public/assets/";
+    var hostUrl = "/public/assets/";
     </script>
     <script>
     Dropzone.autoDiscover = false;
 
     let myDropzone = new Dropzone("#kt_modal_upload_dropzone", {
-        url: "/Kima/Kima2/app/Controllers/ComunicadosController.php?action=subirArchivo",
+        url: "/app/Controllers/ComunicadosController.php?action=subirArchivo",
         paramName: "archivo",
         maxFilesize: 1, // 1MB
         acceptedFiles: ".pdf",

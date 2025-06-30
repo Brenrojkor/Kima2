@@ -578,7 +578,7 @@ try {
 
     <!--begin::Javascript-->
     <script>
-    var hostUrl = "/Kima/Kima2/public/assets/";
+    var hostUrl = "/public/assets/";
     </script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -681,7 +681,7 @@ try {
             }
 
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/TicketController.php?action=eliminarMultiplesTickets",
+                url: "/app/Controllers/TicketController.php?action=eliminarMultiplesTickets",
                 type: "POST",
                 data: JSON.stringify({
                     ids: seleccionados
@@ -773,7 +773,7 @@ try {
 
         // ✅ Dropzone para subir archivos
         var dropzoneEdit = new Dropzone("#kt_modal_edit_ticket_attachments", {
-            url: "/Kima/Kima2/app/Controllers/UploadController.php",
+            url: "/app/Controllers/UploadController.php",
             paramName: "file",
             maxFiles: 10,
             acceptedFiles: ".pdf,.doc,.docx,.jpg,.png",
@@ -810,7 +810,7 @@ try {
 
         // ✅ Dropzone para subir archivos
         var dropzone = new Dropzone("#kt_modal_create_ticket_attachments", {
-            url: "/Kima/Kima2/app/Controllers/UploadController.php",
+            url: "/app/Controllers/UploadController.php",
             paramName: "file",
             maxFiles: 10,
             acceptedFiles: ".pdf,.doc,.docx,.jpg,.png",
@@ -879,7 +879,7 @@ try {
 
             // Obtener los datos del ticket
             $.ajax({
-                url: `/Kima/Kima2/app/Controllers/TicketController.php?action=obtenerTicket&id=${ticketId}`,
+                url: `/app/Controllers/TicketController.php?action=obtenerTicket&id=${ticketId}`,
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -911,7 +911,7 @@ try {
                         cargarComentarios(ticketId);
 
                         $.ajax({
-                            url: `/Kima/Kima2/app/Controllers/TicketController.php?action=obtenerDocumentosPorTicket&ticket_id=${ticket.ID}`,
+                            url: `/app/Controllers/TicketController.php?action=obtenerDocumentosPorTicket&ticket_id=${ticket.ID}`,
                             type: "GET",
                             dataType: "json",
                             success: function(docResponse) {
@@ -958,7 +958,7 @@ try {
 
         function cargarComentarios(ticketId) {
             $.getJSON(
-                `/Kima/Kima2/app/Controllers/TicketController.php?action=obtenerComentarios&ticket_id=${ticketId}`,
+                `/app/Controllers/TicketController.php?action=obtenerComentarios&ticket_id=${ticketId}`,
                 function(response) {
                     let rows = "";
                     if (response.status === "success") {
@@ -980,7 +980,7 @@ try {
             if (!confirm("¿Deseas eliminar este documento adjunto?")) return;
 
             $.ajax({
-                url: `/Kima/Kima2/app/Controllers/TicketController.php?action=eliminarDocumento`,
+                url: `/app/Controllers/TicketController.php?action=eliminarDocumento`,
                 type: "POST",
                 data: {
                     id: docId
@@ -1006,7 +1006,7 @@ try {
 
             if (comentario.length === 0) return alert("⚠️ Debes ingresar un comentario.");
 
-            $.post("/Kima/Kima2/app/Controllers/TicketController.php?action=guardarComentario", {
+            $.post("/app/Controllers/TicketController.php?action=guardarComentario", {
                 ticket_id: ticketID,
                 comentario: comentario
             }, function(response) {
@@ -1085,7 +1085,7 @@ try {
             var formData = new FormData($("#kt_modal_new_ticket_form")[0]);
 
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/TicketController.php?action=procesarTicket",
+                url: "/app/Controllers/TicketController.php?action=procesarTicket",
                 type: "POST",
                 data: formData,
                 contentType: false,
@@ -1139,7 +1139,7 @@ try {
         // ✅ Cargar tickets al iniciar
         function cargarTickets() {
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/TicketController.php?action=obtenerTickets",
+                url: "/app/Controllers/TicketController.php?action=obtenerTickets",
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -1210,7 +1210,7 @@ try {
         function cargarOpcionesSelects() {
             // Cargar clientesa
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/TicketController.php?action=obtenerClientes",
+                url: "/app/Controllers/TicketController.php?action=obtenerClientes",
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -1226,7 +1226,7 @@ try {
 
             // Cargar tipos de producto
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/TicketController.php?action=obtenerProductos",
+                url: "/app/Controllers/TicketController.php?action=obtenerProductos",
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -1242,7 +1242,7 @@ try {
 
             // Cargar responsables
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/TicketController.php?action=obtenerUsuarios",
+                url: "/app/Controllers/TicketController.php?action=obtenerUsuarios",
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -1257,7 +1257,7 @@ try {
 
             // Cargar estados
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/TicketController.php?action=obtenerEstados",
+                url: "/app/Controllers/TicketController.php?action=obtenerEstados",
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -1272,7 +1272,7 @@ try {
 
             // Cargar categorías
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/TicketController.php?action=obtenerCategorias",
+                url: "/app/Controllers/TicketController.php?action=obtenerCategorias",
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -1303,7 +1303,7 @@ try {
             let formData = new FormData($("#kt_modal_edit_ticket_form")[0]);
 
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/TicketController.php?action=actualizarTicket",
+                url: "/app/Controllers/TicketController.php?action=actualizarTicket",
                 type: "POST",
                 data: formData,
                 contentType: false,
@@ -1345,7 +1345,7 @@ try {
         $("#confirmDelete").on("click", function() {
             if (ticketIdToDelete) {
                 $.ajax({
-                    url: `/Kima/Kima2/app/Controllers/TicketController.php?action=eliminarTicket&id=${ticketIdToDelete}`,
+                    url: `/app/Controllers/TicketController.php?action=eliminarTicket&id=${ticketIdToDelete}`,
                     type: "POST",
                     dataType: "json",
                     success: function(response) {
@@ -1380,7 +1380,7 @@ try {
 
             // Obtener los datos del ticket
             $.ajax({
-                url: `/Kima/Kima2/app/Controllers/TicketController.php?action=obtenerTicketShow&id=${ticketId}`,
+                url: `/app/Controllers/TicketController.php?action=obtenerTicketShow&id=${ticketId}`,
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -1404,7 +1404,7 @@ try {
                         $("#view-ticket-descripcion").text(ticket.Descripcion);
 
                         $.ajax({
-                            url: `/Kima/Kima2/app/Controllers/TicketController.php?action=obtenerDocumentosPorTicket&ticket_id=${ticket.ID}`,
+                            url: `/app/Controllers/TicketController.php?action=obtenerDocumentosPorTicket&ticket_id=${ticket.ID}`,
                             type: "GET",
                             dataType: "json",
                             success: function(docResponse) {
@@ -1519,20 +1519,20 @@ try {
     });
     </script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="/Kima/Kima2/public/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="/Kima/Kima2/public/assets/js/scripts.bundle.js"></script>
+    <script src="/public/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/public/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="/Kima/Kima2/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="/Kima/Kima2/public/assets/js/custom/apps/file-manager/list.js"></script>
-    <script src="/Kima/Kima2/public/assets/js/widgets.bundle.js"></script>
-    <script src="/Kima/Kima2/public/assets/js/custom/widgets.js"></script>
-    <script src="/Kima/Kima2/public/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="/Kima/Kima2/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-    <script src="/Kima/Kima2/public/assets/js/custom/utilities/modals/create-app.js"></script>
-    <script src="/Kima/Kima2/public/assets/js/custom/utilities/modals/users-search.js"></script>
+    <script src="/public/assets/js/custom/apps/file-manager/list.js"></script>
+    <script src="/public/assets/js/widgets.bundle.js"></script>
+    <script src="/public/assets/js/custom/widgets.js"></script>
+    <script src="/public/assets/js/custom/apps/chat/chat.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/create-app.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/users-search.js"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 </body>

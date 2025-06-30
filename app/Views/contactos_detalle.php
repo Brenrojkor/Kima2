@@ -41,7 +41,7 @@ try {
                             <div class="card-body pt-15">
 
                                 <div class="d-flex justify-content-end mb-3">
-                                    <a href="/Kima/Kima2/app/Views/contactos.php" class="btn btn-light-primary fw-bold">
+                                    <a href="/app/Views/contactos.php" class="btn btn-light-primary fw-bold">
                                         <i class="fas fa-arrow-left me-2"></i> Volver
                                     </a>
                                 </div>
@@ -50,7 +50,7 @@ try {
                                 <div class="d-flex flex-center flex-column mb-5">
                                     <!--begin::Avatar-->
                                     <div class="symbol symbol-150px symbol-circle mb-7">
-                                        <img src="/Kima/Kima2/public/assets/media/avatars/blank.png" alt="image">
+                                        <img src="/public/assets/media/avatars/blank.png" alt="image">
                                     </div>
                                     <!--end::Avatar-->
                                     <a class="fs-3 text-gray-800 text-hover-primary fw-bold mb-1">
@@ -118,7 +118,7 @@ try {
     </div>
     <!--begin::Javascript-->
     <script>
-    var hostUrl = "/Kima/Kima2/public/assets/";
+    var hostUrl = "/public/assets/";
     </script>
 
     <script>
@@ -131,20 +131,20 @@ try {
 
 
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="/Kima/Kima2/public/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="/Kima/Kima2/public/assets/js/scripts.bundle.js"></script>
+    <script src="/public/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/public/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="/Kima/Kima2/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="/Kima/Kima2/public/assets/js/custom/apps/file-manager/list.js"></script>
-    <script src="/Kima/Kima2/public/assets/js/widgets.bundle.js"></script>
-    <script src="/Kima/Kima2/public/assets/js/custom/widgets.js"></script>
-    <script src="/Kima/Kima2/public/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="/Kima/Kima2/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-    <script src="/Kima/Kima2/public/assets/js/custom/utilities/modals/create-app.js"></script>
-    <script src="/Kima/Kima2/public/assets/js/custom/utilities/modals/users-search.js"></script>
+    <script src="/public/assets/js/custom/apps/file-manager/list.js"></script>
+    <script src="/public/assets/js/widgets.bundle.js"></script>
+    <script src="/public/assets/js/custom/widgets.js"></script>
+    <script src="/public/assets/js/custom/apps/chat/chat.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/create-app.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/users-search.js"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 </body>

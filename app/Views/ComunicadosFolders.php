@@ -224,7 +224,7 @@ try {
 
     function cargarCarpetasTipoAcordeon() {
         $.ajax({
-            url: "/Kima/Kima2/app/Controllers/ComunicadosController.php?action=obtenerCarpetasConArchivos",
+            url: "/app/Controllers/ComunicadosController.php?action=obtenerCarpetasConArchivos",
             type: "GET",
             dataType: "json",
             success: function(response) {
@@ -310,7 +310,7 @@ try {
         $select.empty(); // Limpiar
 
         $.ajax({
-            url: '/Kima/Kima2/app/Controllers/ComunicadosController.php?action=listarArchivos',
+            url: '/app/Controllers/ComunicadosController.php?action=listarArchivos',
             method: 'GET',
             dataType: 'json',
             success: function(res) {
@@ -338,7 +338,7 @@ try {
 
 
         $.ajax({
-            url: '/Kima/Kima2/app/Controllers/ComunicadosController.php?action=crearCarpetaConArchivos',
+            url: '/app/Controllers/ComunicadosController.php?action=crearCarpetaConArchivos',
             type: 'POST',
             data: formData,
             contentType: false,
@@ -370,7 +370,7 @@ try {
                             }
 
                             $.ajax({
-                                url: "/Kima/Kima2/app/Controllers/ComunicadosController.php?action=subirArchivo",
+                                url: "/app/Controllers/ComunicadosController.php?action=subirArchivo",
                                 type: "POST",
                                 data: formData,
                                 contentType: false,
@@ -451,7 +451,7 @@ try {
 
         if (nuevoNombre && nuevoNombre !== nombreActual) {
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/ComunicadosController.php?action=renombrarComunicado",
+                url: "/app/Controllers/ComunicadosController.php?action=renombrarComunicado",
                 type: "POST",
                 data: {
                     id: id,
@@ -483,7 +483,7 @@ try {
         if (confirm(
                 "⚠️ ¿Estás seguro de que deseas eliminar esta carpeta y los archivos dentro de la misma?")) {
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/ComunicadosController.php?action=eliminarComunicado",
+                url: "/app/Controllers/ComunicadosController.php?action=eliminarComunicado",
                 type: "POST",
                 data: {
                     id: id,
@@ -519,20 +519,20 @@ try {
     });
     </script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="/Kima/Kima2/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="/Kima/Kima2/assets/js/scripts.bundle.js"></script>
+    <script src="/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="/Kima/Kima2/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="/Kima/Kima2/assets/js/custom/apps/file-manager/list.js"></script>
-    <script src="/Kima/Kima2/assets/js/widgets.bundle.js"></script>
-    <script src="/Kima/Kima2/assets/js/custom/widgets.js"></script>
-    <script src="/Kima/Kima2/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="/Kima/Kima2/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-    <script src="/Kima/Kima2/assets/js/custom/utilities/modals/create-app.js"></script>
-    <script src="/Kima/Kima2/assets/js/custom/utilities/modals/users-search.js"></script>
+    <script src="/assets/js/custom/apps/file-manager/list.js"></script>
+    <script src="/assets/js/widgets.bundle.js"></script>
+    <script src="/assets/js/custom/widgets.js"></script>
+    <script src="/assets/js/custom/apps/chat/chat.js"></script>
+    <script src="/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="/assets/js/custom/utilities/modals/create-app.js"></script>
+    <script src="/assets/js/custom/utilities/modals/users-search.js"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 </body>

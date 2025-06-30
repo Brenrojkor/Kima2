@@ -368,7 +368,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
             const id = $(this).data("id");
 
             $.ajax({
-                url: `/Kima/Kima2/app/Controllers/CotizacionesController.php?action=obtenerCotizacion&id=${id}`,
+                url: `/app/Controllers/CotizacionesController.php?action=obtenerCotizacion&id=${id}`,
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -450,7 +450,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
             }
 
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/CotizacionesController.php?action=buscarClientes",
+                url: "/app/Controllers/CotizacionesController.php?action=buscarClientes",
                 type: "POST",
                 data: {
                     query: query
@@ -480,7 +480,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
             const id = $(this).data("id");
 
             $.ajax({
-                url: `/Kima/Kima2/app/Controllers/CotizacionesController.php?action=obtenerCotizacion&id=${id}`,
+                url: `/app/Controllers/CotizacionesController.php?action=obtenerCotizacion&id=${id}`,
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -571,7 +571,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
             let productos = JSON.stringify(listaProductosEditar);
 
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/CotizacionesController.php?action=actualizarCotizacion",
+                url: "/app/Controllers/CotizacionesController.php?action=actualizarCotizacion",
                 type: "POST",
                 data: {
                     cotizacion_id,
@@ -625,7 +625,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
             }
 
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/CotizacionesController.php?action=buscarClientes",
+                url: "/app/Controllers/CotizacionesController.php?action=buscarClientes",
                 type: "POST",
                 data: {
                     query
@@ -677,7 +677,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
             }
 
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/CotizacionesController.php?action=buscarProductos",
+                url: "/app/Controllers/CotizacionesController.php?action=buscarProductos",
                 type: "POST",
                 data: {
                     query: query
@@ -744,7 +744,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
             }
 
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/CotizacionesController.php?action=buscarProductos",
+                url: "/app/Controllers/CotizacionesController.php?action=buscarProductos",
                 type: "POST",
                 data: {
                     query
@@ -851,7 +851,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
                     "¿Estás seguro de que deseas eliminar esta cotización? Esta acción no se puede deshacer."
                 )) {
                 $.ajax({
-                    url: "/Kima/Kima2/app/Controllers/CotizacionesController.php?action=eliminarCotizacion",
+                    url: "/app/Controllers/CotizacionesController.php?action=eliminarCotizacion",
                     type: "POST",
                     data: {
                         id
@@ -898,7 +898,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
             let productos = JSON.stringify(listaProductos);
 
             $.ajax({
-                url: "/Kima/Kima2/app/Controllers/CotizacionesController.php?action=guardarCotizacion",
+                url: "/app/Controllers/CotizacionesController.php?action=guardarCotizacion",
                 type: "POST",
                 data: {
                     cliente_id: cliente_id,
@@ -923,7 +923,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
             "processing": true,
             "serverSide": false,
             "ajax": {
-                "url": "/Kima/Kima2/app/Controllers/CotizacionesController.php?action=listarCotizaciones",
+                "url": "/app/Controllers/CotizacionesController.php?action=listarCotizaciones",
                 "type": "GET",
                 "dataSrc": ""
             },
@@ -934,7 +934,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
                     "data": null,
                     "render": function(data, type, row) {
                         return `
-                    <a href="/Kima/Kima2/app/Views/clientes.php?id=${row.cliente_id}" class="btn btn-sm btn-link text-primary fw-semibold">
+                    <a href="/app/Views/clientes.php?id=${row.cliente_id}" class="btn btn-sm btn-link text-primary fw-semibold">
                         ${row.cliente}
                     </a>`;
                     }
@@ -961,7 +961,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
                             <button class='btn btn-icon btn-light-secondary me-2 verCotizacion' data-id="${data}">
                                 <i class='fa-solid fa-eye'></i>
                             </button>
-                            <a class='btn btn-icon btn-light-info me-2' href='/Kima/Kima2/app/Controllers/CotizacionesController.php?action=descargarPDF&id=${data}' target="_blank">
+                            <a class='btn btn-icon btn-light-info me-2' href='/app/Controllers/CotizacionesController.php?action=descargarPDF&id=${data}' target="_blank">
                                 <i class='fa fa-file-pdf'></i>
                             </a>
                             <button class='btn btn-icon btn-light-primary me-2 editarCotizacion' data-id="${data}">
