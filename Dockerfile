@@ -26,9 +26,6 @@ RUN pecl install pdo_sqlsrv sqlsrv \
 # Enable Apache rewrite module
 RUN a2enmod rewrite
 
-# Copy your PHP project files
-COPY . /var/www/html
-
 # Optional: Set permissions
 RUN chown -R www-data:www-data /var/www/html
 
