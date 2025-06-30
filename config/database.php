@@ -1,13 +1,16 @@
 <?php
 // Configuración de la base de datos
-$serverName = "DESKTOP-53HSUSK";
+$serverName = "127.0.0.1";
 $database = "Kima";
 $username = "kima";
 $password = "Inicio01";
 
 try {
-    // Crear la conexión con SQL Server
-    $conn = new PDO("sqlsrv:server=$serverName;Database=$database", $username, $password);
+    // Desactivar la validación del certificado
+    $connectionOptions = "sqlsrv:server=$serverName;Database=$database;Encrypt=true;TrustServerCertificate=true";
+
+    // Crear la conexión
+    $conn = new PDO($connectionOptions, $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("❌ Error de conexión a la base de datos: " . $e->getMessage());
