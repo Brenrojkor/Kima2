@@ -79,7 +79,7 @@ install_systemd
 install_tooling
 
 echo
-echo "\nTodo ok!"
+echo "Todo ok!"
 echo
 echo "|\---/|"
 echo "| o_o |"
