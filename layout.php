@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($title) ? $title : "KIMA"; ?></title>
     <!-- Cargar CSS -->
-    <link href="/public/assets/css/style.bundle.css" rel="stylesheet">
-    <link href="/public/assets/css/custom.css" rel="stylesheet">
-    <link rel="icon" href="/public/assets/media/logos/ticket-de-soporte.png" type="image/svg+xml">
+    <link href="/Kima/public/assets/css/style.bundle.css" rel="stylesheet">
+    <link href="/Kima/public/assets/css/custom.css" rel="stylesheet">
+    <link rel="icon" href="/Kima/public/assets/media/logos/ticket-de-soporte.png" type="image/svg+xml">
 </head>
 
 <body id="kt_app_body" class="app-default">

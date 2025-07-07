@@ -44,7 +44,7 @@ try {
                                     <!--begin::Avatar-->
                                     <div class="symbol symbol-150px symbol-circle mb-7 position-relative">
                                         <img id="img_perfil"
-                                            src="<?= $cliente['ImagenPerfil'] ? '/uploads/usuarios/' . $cliente['ImagenPerfil'] : '/public/assets/media/avatars/cuenta.png' ?>"
+                                            src="<?= $cliente['ImagenPerfil'] ? '/Kima/uploads/usuarios/' . $cliente['ImagenPerfil'] : '/Kima/public/assets/media/avatars/cuenta.png' ?>"
                                             alt="Perfil" class="w-100 h-100">
 
                                         <!-- Botón de lápiz -->
@@ -111,7 +111,7 @@ try {
                                     href="#kt_ecommerce_customer_overview" aria-selected="true" role="tab">General</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a href="/app/Views/Usuarios.php" class="boton-gris">Ir a listado</a>
+                                <a href="/Kima/app/Views/Usuarios.php" class="boton-gris">Ir a listado</a>
 
 
                                 <style>
@@ -133,6 +133,12 @@ try {
                                     background-color: darkgray;
                                 }
                                 </style>
+                            </li>
+                            <li>
+                                <button style="margin-left: 10px;" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#modalCambiarPassword">
+                                    <i class="fa-solid fa-key"></i> Cambiar Contraseña
+                                </button>
                             </li>
                             <!--end:::Tab item-->
                         </ul>
@@ -307,6 +313,37 @@ try {
                         </div>
                         <!--end::Content-->
                     </div>
+
+                    <!-- Modal Cambiar Contraseña -->
+                    <div class="modal fade" id="modalCambiarPassword" tabindex="-1"
+                        aria-labelledby="modalCambiarPasswordLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form id="formCambiarPassword">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Cambiar Contraseña</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label>Nueva Contraseña</label>
+                                            <input type="password" class="form-control" name="nueva" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Confirmar Contraseña</label>
+                                            <input type="password" class="form-control" name="confirmar" required>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-success">Actualizar</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
                     <!--end::Layout-->
                     <!--begin::Modals-->
                     <!--begin::Modal - New Address-->
@@ -736,7 +773,38 @@ try {
     </div>
     <!--begin::Javascript-->
     <script>
-    var hostUrl = "/public/assets/";
+    var hostUrl = "/Kima/public/assets/";
+
+
+    $('#formCambiarPassword').on('submit', function(e) {
+        e.preventDefault();
+
+        let formData = $(this).serialize();
+
+        $.ajax({
+            url: '/Kima/app/Controllers/UsuariosController.php?action=cambiarPassword',
+            type: 'POST',
+            data: formData,
+            success: function(response) {
+                let res = JSON.parse(response);
+                if (res.status === 'success') {
+                    alert('Contraseña actualizada correctamente');
+                    const modalElement = document.getElementById('modalCambiarPassword');
+                    const modal = bootstrap.Modal.getInstance(modalElement);
+                    modal.hide();
+
+                    $('#formCambiarPassword')[0].reset();
+
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+
+                } else {
+                    alert(res.message);
+                }
+            }
+        });
+    });
     </script>
 
     <script>
@@ -747,20 +815,20 @@ try {
     span.style.color = 'white';
     </script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="/public/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="/public/assets/js/scripts.bundle.js"></script>
+    <script src="/Kima/public/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/Kima/public/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="/Kima/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="/public/assets/js/custom/apps/file-manager/list.js"></script>
-    <script src="/public/assets/js/widgets.bundle.js"></script>
-    <script src="/public/assets/js/custom/widgets.js"></script>
-    <script src="/public/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/create-app.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/users-search.js"></script>
+    <script src="/Kima/public/assets/js/custom/apps/file-manager/list.js"></script>
+    <script src="/Kima/public/assets/js/widgets.bundle.js"></script>
+    <script src="/Kima/public/assets/js/custom/widgets.js"></script>
+    <script src="/Kima/public/assets/js/custom/apps/chat/chat.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/create-app.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/users-search.js"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 </body>

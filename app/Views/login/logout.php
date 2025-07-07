@@ -1,6 +1,6 @@
 <?php
 session_start();
 session_destroy();
-header("Location: /app/Views/login/login.php");
+header("Location: /Kima/app/Views/login/login.php");
 exit();
 ?>

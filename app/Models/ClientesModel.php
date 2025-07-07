@@ -144,6 +144,12 @@ class ClientesModel {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function actualizarFotoUsuario($id, $nombreArchivo) {
+        $sql = "UPDATE clientes SET ImagenPerfil = ? WHERE ID = ?";
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute([$nombreArchivo, $id]);
+    }
+
     public function deleteClienteById($id) {
         try {
             // 1. Verificar si el cliente tiene tickets asociados

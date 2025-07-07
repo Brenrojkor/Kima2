@@ -240,6 +240,39 @@ class UsuarioController {
         exit();
     }
 
+    public function cambiarPassword() {
+    session_start();
+    $usuarioId = $_SESSION['usuario_id'] ?? null;
+
+    if (!$usuarioId) {
+        echo json_encode(["status" => "error", "message" => "Usuario no autenticado"]);
+        exit();
+    }
+
+    $nueva = $_POST["nueva"] ?? null;
+    $confirmar = $_POST["confirmar"] ?? null;
+
+    if (!$nueva || !$confirmar) {
+        echo json_encode(["status" => "error", "message" => "Faltan campos obligatorios"]);
+        exit();
+    }
+
+    if ($nueva !== $confirmar) {
+        echo json_encode(["status" => "error", "message" => "Las contraseñas no coinciden"]);
+        exit();
+    }
+
+    $resultado = $this->model->actualizarPassword($usuarioId, $nueva);
+
+    if ($resultado) {
+        echo json_encode(["status" => "success", "message" => "Contraseña actualizada correctamente"]);
+    } else {
+        echo json_encode(["status" => "error", "message" => "No se pudo actualizar la contraseña"]);
+    }
+    exit();
+}
+
+
     
 
     

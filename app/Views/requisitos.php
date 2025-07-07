@@ -8,7 +8,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title; ?></title>
-    <link href="/public/assets/css/style.bundle.css" rel="stylesheet">
+    <link href="/Kima/public/assets/css/style.bundle.css" rel="stylesheet">
     <!-- jQuery (siempre primero) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -203,7 +203,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
                 function loadCategorias(selectedCategoria = null) {
                     return new Promise((resolve, reject) => {
                         $.ajax({
-                            url: "/app/Controllers/RequisitosController.php?action=getCategorias",
+                            url: "/Kima/app/Controllers/RequisitosController.php?action=getCategorias",
                             type: "GET",
                             dataType: "json",
                             success: function(response) {
@@ -226,7 +226,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
                 function loadPrioridades(selectedPrioridad = null) {
                     return new Promise((resolve, reject) => {
                         $.ajax({
-                            url: "/app/Controllers/RequisitosController.php?action=getPrioridades",
+                            url: "/Kima/app/Controllers/RequisitosController.php?action=getPrioridades",
                             type: "GET",
                             dataType: "json",
                             success: function(response) {
@@ -276,7 +276,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
                     event.preventDefault();
                     let formData = $(this).serialize();
                     let action = $("#id_requisito").val() ? "update" : "create";
-                    $.post(`/app/Controllers/RequisitosController.php?action=${action}`, formData,
+                    $.post(`/Kima/app/Controllers/RequisitosController.php?action=${action}`, formData,
                         function(response) {
                             alert(response.message);
                             if (response.status === "success") {
@@ -287,7 +287,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
                 });
 
                 function loadRequisitos() {
-                    $.getJSON("/app/Controllers/RequisitosController.php?action=getAllJson", function(
+                    $.getJSON("/Kima/app/Controllers/RequisitosController.php?action=getAllJson", function(
                         response) {
                         let rows = response.data.map(req => `
             <tr>
@@ -343,7 +343,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
                 $(document).on("click", ".btn-delete", function() {
                     let id = $(this).data("id");
                     if (confirm("¿Estás seguro de que deseas eliminar este requisito?")) {
-                        $.post(`/app/Controllers/RequisitosController.php?action=delete`, {
+                        $.post(`/Kima/app/Controllers/RequisitosController.php?action=delete`, {
                             id_requisito: id
                         }, function(response) {
                             alert(response.message);

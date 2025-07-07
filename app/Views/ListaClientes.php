@@ -1,6 +1,34 @@
 <?php
 $title = "Clientes"; // Título dinámico
 include '../../layout.php'; // Asegúrate de que la ruta sea correcta
+
+require_once "../../config/database.php";
+
+try {
+    $query = "SELECT empresa FROM clientes";
+    $stmt = $conn->query($query);
+    $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Extraer solo los valores únicos
+    $empresas = array_unique(array_column($resultados, 'empresa'));
+
+} catch (PDOException $e) {
+    die("Error al obtener empresas: " . $e->getMessage());
+}
+
+try {
+    $query = "SELECT nombre_estado FROM estados_clientes";
+    $stmt = $conn->query($query);
+    $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Extraer solo los valores únicos
+    $estados = array_unique(array_column($resultados, 'nombre_estado'));
+
+} catch (PDOException $e) {
+    die("Error al obtener estados: " . $e->getMessage());
+}
+
+
 ?>
 <html lang="en">
 
@@ -9,7 +37,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title; ?></title>
     <!-- Cargar CSS -->
-    <link href="/public/assets/css/style.bundle.css" rel="stylesheet">
+    <link href="/Kima/public/assets/css/style.bundle.css" rel="stylesheet">
 
 
 </head>
@@ -155,9 +183,27 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
                                         <span class="path1"></span>
                                         <span class="path2"></span>
                                     </i>
-                                    <input type="text" data-kt-customer-table-filter="search"
-                                    id="searchContact" class="form-control form-control-solid w-250px ps-13"
+                                    <input type="text" data-kt-customer-table-filter="search" id="searchContact"
+                                        class="form-control form-control-solid w-250px ps-13"
                                         placeholder="Buscar Cliente">
+                                </div>
+                                <div class="d-flex align-items-center position-relative my-1" style="margin-left: 10px">
+                                    <select id="filtro-empresa" class="form-select form-select-solid w-100">
+                                        <option value="">Todas las empresas</option>
+                                        <?php foreach ($empresas as $empresa): ?>
+                                        <option value="<?= htmlspecialchars($empresa); ?>">
+                                            <?= htmlspecialchars($empresa); ?>
+                                        </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <div class="d-flex align-items-center position-relative my-1" style="margin-left: 10px">
+                                    <select id="filtro-estado" class="form-select form-select-solid w-100">
+                                        <option value="">Todos los estados</option>
+                                        <option value="Activo">Activo</option>
+                                        <option value="Inactivo">Inactivo</option>
+
+                                    </select>
                                 </div>
                                 <!--end::Search-->
                             </div>
@@ -167,20 +213,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
                                 <!--begin::Toolbar-->
                                 <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base"
                                     data-select2-id="select2-data-49-m3ah">
-                                    <!--begin::Filter-->
 
-
-
-                                    <!--end::Filter-->
-                                    <!--begin::Export-->
-                                    <!--<button type="button" class="btn btn-light-primary me-3" data-bs-toggle="modal"
-                                        data-bs-target="#kt_customers_export_modal">
-                                        <i class="ki-duotone ki-exit-up fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>Exportar</button>-->
-                                    <!--end::Export-->
-                                    <!--begin::Add customer-->
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#kt_modal_add_customer">Añadir clientes</button>
                                     <!--end::Add customer-->
@@ -566,7 +599,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
 
             // Petición AJAX para obtener la información del cliente
             $.ajax({
-                url: "/app/Controllers/ClienteController.php?action=getClienteById",
+                url: "/Kima/app/Controllers/ClienteController.php?action=getClienteById",
                 type: "GET",
                 data: {
                     id: clienteID
@@ -607,7 +640,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
             console.log('formdata', formData);
             $.ajax({
                 type: "POST",
-                url: "/app/Controllers/ClienteController.php?action=updateCliente",
+                url: "/Kima/app/Controllers/ClienteController.php?action=updateCliente",
                 data: formData,
                 dataType: "json",
                 success: function(response) {
@@ -648,7 +681,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
 
             $.ajax({
                 type: "POST",
-                url: "/app/Controllers/ClienteController.php?action=create",
+                url: "/Kima/app/Controllers/ClienteController.php?action=create",
                 data: formData,
                 dataType: "json",
                 success: function(response) {
@@ -677,7 +710,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
 
             // Enviar la petición AJAX para eliminar el cliente
             $.ajax({
-                url: "/app/Controllers/ClienteController.php?action=deleteCliente",
+                url: "/Kima/app/Controllers/ClienteController.php?action=deleteCliente",
                 type: "POST",
                 data: {
                     id: clienteID
@@ -703,7 +736,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
             console.log("Ejecutando cargarClientes()...");
 
             $.ajax({
-                url: "/app/Controllers/ClienteController.php?action=getAllJson",
+                url: "/Kima/app/Controllers/ClienteController.php?action=getAllJson",
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -767,6 +800,27 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
                             }
                         });
 
+                        $("#filtro-empresa").off("change").on("change", function() {
+                            table.column(4).search(this.value)
+                                .draw(); // Empresa o ajusta a tu columna
+                        });
+
+
+                        $('#filtro-estado').on('change', function() {
+                            const valor = $(this).val();
+
+                            if (valor) {
+                                // Coincidencia exacta con expresión regular
+                                table.column(5).search('^' + valor + '$', true, false)
+                                .draw();
+                            } else {
+                                // Si se selecciona "Todos", limpiar el filtro
+                                table.column(5).search('').draw();
+                            }
+                        });
+
+
+
                     } else {
                         console.error("Error: No hay datos en la respuesta del servidor.");
                         $("#clientesTableBody").html(
@@ -807,7 +861,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
 
             $.ajax({
                 type: "POST",
-                url: "/app/Controllers/ClienteController.php?action=create",
+                url: "/Kima/app/Controllers/ClienteController.php?action=create",
                 data: formData,
                 dataType: "json",
                 success: function(response) {
@@ -873,7 +927,7 @@ include '../../layout.php'; // Asegúrate de que la ruta sea correcta
 
 <!--begin::Javascript-->
 <script>
-var hostUrl = "/public/assets/";
+var hostUrl = "/Kima/public/assets/";
 </script>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -889,20 +943,20 @@ var hostUrl = "/public/assets/";
 
 </script>
 <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-<script src="/public/assets/plugins/global/plugins.bundle.js"></script>
-<script src="/public/assets/js/scripts.bundle.js"></script>
+<script src="/Kima/public/assets/plugins/global/plugins.bundle.js"></script>
+<script src="/Kima/public/assets/js/scripts.bundle.js"></script>
 <!--end::Global Javascript Bundle-->
 <!--begin::Vendors Javascript(used for this page only)-->
-<script src="/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+<script src="/Kima/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 <!--end::Vendors Javascript-->
 <!--begin::Custom Javascript(used for this page only)-->
-<script src="/public/assets/js/custom/apps/file-manager/list.js"></script>
-<script src="/public/assets/js/widgets.bundle.js"></script>
-<script src="/public/assets/js/custom/widgets.js"></script>
-<script src="/public/assets/js/custom/apps/chat/chat.js"></script>
-<script src="/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-<script src="/public/assets/js/custom/utilities/modals/create-app.js"></script>
-<script src="/public/assets/js/custom/utilities/modals/users-search.js"></script>
+<script src="/Kima/public/assets/js/custom/apps/file-manager/list.js"></script>
+<script src="/Kima/public/assets/js/widgets.bundle.js"></script>
+<script src="/Kima/public/assets/js/custom/widgets.js"></script>
+<script src="/Kima/public/assets/js/custom/apps/chat/chat.js"></script>
+<script src="/Kima/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+<script src="/Kima/public/assets/js/custom/utilities/modals/create-app.js"></script>
+<script src="/Kima/public/assets/js/custom/utilities/modals/users-search.js"></script>
 <!--end::Custom Javascript-->
 <!--end::Javascript-->
 </body>

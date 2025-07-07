@@ -148,6 +148,31 @@ class ClienteController {
             exit();
         }
     }    
+
+
+       public function actualizarFoto() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuarioId = $_POST['usuario_id'] ?? null;
+            
+            if (!$usuarioId || !isset($_FILES['foto_perfil']) || $_FILES['foto_perfil']['error'] !== 0) {
+                echo json_encode(["status" => "error", "message" => "Faltan datos o archivo inválido"]);
+                exit();
+            }
+
+            $nombreArchivo = uniqid() . '_' . basename($_FILES['foto_perfil']['name']);
+            $rutaDestino = __DIR__ . '/../../uploads/usuarios/' . $nombreArchivo;
+
+            if (move_uploaded_file($_FILES['foto_perfil']['tmp_name'], $rutaDestino)) {
+                $this->model->actualizarFotoUsuario($usuarioId, $nombreArchivo);
+                header("Location: /Kima/app/Views/clientes.php?id=$usuarioId");
+                exit();
+            } else {
+                echo json_encode(["status" => "error", "message" => "Error al mover la imagen"]);
+                exit();
+            }
+        }
+    }
+
     
 }
 

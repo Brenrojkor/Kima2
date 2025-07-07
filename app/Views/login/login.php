@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['darkmode'] = $user['darkmode'] ?? 0;
 
             // Redirigir al usuario a index.php
-            header('Location: /public/index.php');
+            header('Location: /Kima/public/index.php');
             exit();
         } else {
             $error = "❌ Contraseña incorrecta.";
@@ -45,16 +45,16 @@ $title = "Iniciar Sesión"; // Título dinámico
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-    <link href="/public/assets/css/style.bundle.css" rel="stylesheet">
-    <link rel="icon" href="/public/assets/media/logos/ticket-de-soporte.png" type="image/svg+xml">
+    <link href="/Kima/public/assets/css/style.bundle.css" rel="stylesheet">
+    <link rel="icon" href="/Kima/public/assets/media/logos/ticket-de-soporte.png" type="image/svg+xml">
 </head>
 <body>
     <div class="d-flex flex-column flex-root vh-100">
         <div class="d-flex flex-column flex-lg-row flex-column-fluid align-items-center justify-content-center">
             <div class="bg-body d-flex flex-column flex-center rounded-4 w-md-600px p-10 text-center">
                 <div class="d-flex flex-center flex-column align-items-stretch h-lg-100 w-md-400px">
-                    <form class="form w-100" method="POST" action="/app/Views/login/login.php">
-                        <img alt="Logo" src="/public/assets/media/logos/logo_kima_v1.png" class="h-40px" />
+                    <form class="form w-100" method="POST" action="/Kima/app/Views/login/login.php">
+                        <img alt="Logo" src="/Kima/public/assets/media/logos/logo_kima_v1.png" class="h-40px" />
                         <div class="text-center mb-11">
                             <h1 class="text-gray-900 fw-bolder mb-3">Iniciar Sesión</h1>
                             <?php if (!empty($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>

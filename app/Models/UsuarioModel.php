@@ -102,6 +102,15 @@ class UsuarioModel {
         return $stmt->execute([$darkmode, $usuarioId]);
     }
 
+    public function actualizarPassword($usuarioId, $nuevaPassword) {
+        $hash = password_hash($nuevaPassword, PASSWORD_DEFAULT);
+
+        $sql = "UPDATE Usuarios SET Contraseña = ? WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute([$hash, $usuarioId]);
+    }
+
+
     
     
     

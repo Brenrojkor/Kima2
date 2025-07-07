@@ -42,8 +42,17 @@ try {
                                 <!--begin::Summary-->
                                 <div class="d-flex flex-center flex-column mb-5">
                                     <!--begin::Avatar-->
-                                    <div class="symbol symbol-150px symbol-circle mb-7">
-                                        <img src="/public/assets/media/avatars/300-1.jpg" alt="image">
+                                    <div class="symbol symbol-150px symbol-circle mb-7 position-relative">
+                                        <img id="img_perfil"
+                                            src="<?= $cliente['ImagenPerfil'] ? '/Kima/uploads/usuarios/' . $cliente['ImagenPerfil'] : '/Kima/public/assets/media/avatars/cuenta.png' ?>"
+                                            alt="Perfil" class="w-100 h-100">
+
+                                        <!-- Botón de lápiz -->
+                                        <button type="button"
+                                            class="btn btn-sm btn-icon btn-active-color-primary position-absolute top-0 end-0 mt-1 me-1"
+                                            data-bs-toggle="modal" data-bs-target="#modalCambiarFoto">
+                                            <i class="fa fa-pencil-alt fs-6"></i>
+                                        </button>
                                     </div>
                                     <!--end::Avatar-->
                                     <!--begin::Name-->
@@ -105,7 +114,7 @@ try {
                                     href="#kt_tab_cotizaciones" aria-selected="false" role="tab">Cotizaciones</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a href="/app/Views/ListaClientes.php" class="boton-gris">Volver al listado</a>
+                                <a href="/Kima/app/Views/ListaClientes.php" class="boton-gris">Volver al listado</a>
 
 
                                 <style>
@@ -158,7 +167,7 @@ try {
                                                     <colgroup>
                                                         <col data-dt-column="0" style="width: 115.891px;">
                                                         <col data-dt-column="1" style="width: 91.9531px;">
-                                                        <col data-dt-column="3" style="width: 40.9219px;">
+                                                        <col data-dt-column="2" style="width: 40.9219px;">
                                                     </colgroup>
                                                     <thead class="border-bottom border-gray-200 fs-7 fw-bold">
                                                         <tr class="text-start text-muted text-uppercase gs-0">
@@ -174,7 +183,7 @@ try {
                                                                     class="dt-column-title"
                                                                     role="button">Estado</span><span
                                                                     class="dt-column-order"></span></th>
-                                                            <th class="min-w-100px dt-orderable-none" data-dt-column="4"
+                                                            <th class="min-w-100px dt-orderable-none" data-dt-column="2"
                                                                 rowspan="1" colspan="1" aria-label="Date"><span
                                                                     class="dt-column-title">Date</span><span
                                                                     class="dt-column-order"></span></th>
@@ -622,6 +631,26 @@ try {
                     </div>
                     <!--end::Modal - Update email-->
 
+                    <div class="modal fade" id="modalCambiarFoto" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <form class="modal-content" id="formCambiarFoto" enctype="multipart/form-data" method="POST"
+                                action="/Kima/app/Controllers/ClienteController.php?action=actualizarFoto">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Cambiar Foto de Perfil</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Cerrar"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" name="usuario_id" value="<?= $cliente['id'] ?>">
+                                    <input type="file" name="foto_perfil" accept="image/*" required
+                                        class="form-control">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Actualizar Foto</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -633,7 +662,7 @@ try {
     </div>
     <!--begin::Javascript-->
     <script>
-    var hostUrl = "/public/assets/";
+    var hostUrl = "/Kima/public/assets/";
     </script>
 
     <script>
@@ -650,35 +679,39 @@ try {
         const clienteID = <?= $idCliente ?>;
 
         $.ajax({
-            url: `/app/Controllers/TicketController.php?action=obtenerTicketsPorCliente&cliente_id=${clienteID}`,
+            url: `/Kima/app/Controllers/TicketController.php?action=obtenerTicketsPorCliente&cliente_id=${clienteID}`,
             method: "GET",
             dataType: "json",
             success: function(response) {
-                if (response.status === "success") {
-                    let tabla;
-                    if (!$.fn.DataTable.isDataTable('#kt_table_customers_payment')) {
-                        tabla = $('#kt_table_customers_payment').DataTable({
-                            responsive: true,
-                            language: {
-                                url: "https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
-                            }
-                        });
-                    } else {
-                        tabla = $('#kt_table_customers_payment').DataTable();
-                    }
+                let tabla;
 
-                    tabla.clear();
+                // ✅ Inicializar correctamente la DataTable con definición de columnas
+                if (!$.fn.DataTable.isDataTable('#kt_table_customers_payment')) {
+                    tabla = $('#kt_table_customers_payment').DataTable({
+                        responsive: true,
+                        language: {
+                            url: "https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json",
+                            emptyTable: "No hay tickets disponibles para este cliente."
+                        }
+                    });
+                } else {
+                    tabla = $('#kt_table_customers_payment').DataTable();
+                }
 
+                tabla.clear();
+
+                if (Array.isArray(response.data) && response.data.length > 0) {
                     response.data.forEach(ticket => {
-                        console.log("🧩 EstadoID recibido:", ticket
-                            .EstadoID); // ✅ Depuración
+                        if (!ticket.ID || !ticket.EstadoID || !ticket.Estado || !ticket
+                            .FechaCreacion) {
+                            console.warn("❌ Ticket incompleto:", ticket);
+                            return;
+                        }
 
                         let badgeClass = "badge-light-secondary";
 
                         switch (parseInt(ticket.EstadoID)) {
                             case 1:
-                                badgeClass = "badge-light-warning";
-                                break;
                             case 2:
                                 badgeClass = "badge-light-warning";
                                 break;
@@ -698,22 +731,26 @@ try {
                         const fecha = new Date(ticket.FechaCreacion).toLocaleDateString(
                             "es-CR");
 
-
                         tabla.row.add([
                             `<a class="text-hover-primary">#${ticket.ID}</a>`,
                             estadoBadge,
                             fecha
                         ]);
                     });
-
-                    tabla.draw();
                 }
+
+                tabla.draw();
+            },
+            error: function(xhr, status, error) {
+                console.error("❌ Error en la petición AJAX:", error);
             }
         });
 
 
+
+
         $.ajax({
-            url: `/app/Controllers/CotizacionesController.php?action=obtenerPorCliente&cliente_id=${clienteID}`,
+            url: `/Kima/app/Controllers/CotizacionesController.php?action=obtenerPorCliente&cliente_id=${clienteID}`,
             method: "GET",
             dataType: "json",
             success: function(response) {
@@ -751,7 +788,7 @@ try {
                                 `<a class="text-hover-primary">#${cotizacion.id}</a>`,
                                 fecha,
                                 total,
-                                `<a href="/app/Controllers/CotizacionesController.php?action=descargarPDF&id=${cotizacion.id}" target="_blank" class="btn btn-icon btn-sm btn-light-danger"><i class="fa fa-file-pdf"></i></a>`
+                                `<a href="/Kima/app/Controllers/CotizacionesController.php?action=descargarPDF&id=${cotizacion.id}" target="_blank" class="btn btn-icon btn-sm btn-light-danger"><i class="fa fa-file-pdf"></i></a>`
                             ]);
 
                         });
@@ -774,20 +811,20 @@ try {
     </script>
 
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="/public/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="/public/assets/js/scripts.bundle.js"></script>
+    <script src="/Kima/public/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/Kima/public/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="/Kima/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="/public/assets/js/custom/apps/file-manager/list.js"></script>
-    <script src="/public/assets/js/widgets.bundle.js"></script>
-    <script src="/public/assets/js/custom/widgets.js"></script>
-    <script src="/public/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/create-app.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/users-search.js"></script>
+    <script src="/Kima/public/assets/js/custom/apps/file-manager/list.js"></script>
+    <script src="/Kima/public/assets/js/widgets.bundle.js"></script>
+    <script src="/Kima/public/assets/js/custom/widgets.js"></script>
+    <script src="/Kima/public/assets/js/custom/apps/chat/chat.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/create-app.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/users-search.js"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 </body>

@@ -54,10 +54,11 @@ if ($cantidadTickets > 0) {
 ?>
 <html lang="en">
 <style>
-    .btn_center_i{
-        padding-right: 0px !important;
-    }
+.btn_center_i {
+    padding-right: 0px !important;
+}
 </style>
+
 <body>
     <!--begin::Main-->
     <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
@@ -79,7 +80,7 @@ if ($cantidadTickets > 0) {
                         </button>
 
 
-                        <a href="/app/Views/tarifario.php" class="btn btn-sm fw-bold btn-primary"><i
+                        <a href="/Kima/app/Views/tarifario.php" class="btn btn-sm fw-bold btn-primary"><i
                                 class="fa-solid fa-plus"></i>Agregar servicio tarifario</a>
 
                     </div>
@@ -250,6 +251,8 @@ if ($cantidadTickets > 0) {
                     <!--begin::Row-->
                     <!--Inicia Charts  --->
 
+                    <?php if ($_SESSION['rol'] === 'Admin'): ?>
+
                     <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
                         <!--begin::Col Izquierdo-->
                         <div class="col-xxl-6">
@@ -273,78 +276,11 @@ if ($cantidadTickets > 0) {
                                 <!--end::Body-->
                             </div>
                         </div>
-                        <!--end::Col Izquierdo-->
-                        <!--begin::Col Derecho-->
-                        <div class="col-xxl-6">
-                            <div class="card card-flush h-md-100">
-                                <div class="card-header pt-5">
-                                    <h3 class="card-title d-flex flex-column">
-                                        <span class="card-label fw-bold fs-3 mb-1">Estado de Tickets</span>
-                                        <span class="text-muted fw-semibold fs-7">Distribución de tickets por
-                                            estado</span>
-                                    </h3>
-                                </div>
-                                <div class="card-body">
-                                    <div id="ticketsChart" style="height: 350px;"></div>
-                                    <!-- 🔥 Aquí se mostrará el gráfico -->
-                                </div>
-                            </div>
 
-                        </div>
-                        <!--end::Col Derecho-->
                     </div>
 
                     <!-- Finaliza Charts  --->
                     <!--begin::Row-->
-                    <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
-                        <!--begin::Col Izquierdo-->
-                        <div class="col-xxl-6">
-                            <div class="card card-flush h-md-100">
-                                <!--begin::Header-->
-                                <div class="card-header pt-5">
-                                    <h3 class="card-title d-flex flex-column">
-                                        <span class="card-label fw-bold fs-3 mb-1">Tiempos de resolución</span>
-                                        <span class="text-muted fw-semibold fs-7">Tickets abiertos, con mayor tiempo sin
-                                            solución (ID de tickets)</span>
-                                    </h3>
-                                </div>
-                                <!--end::Header-->
-                                <!--begin::Body-->
-                                <div class="card-body">
-                                    <!--begin::Gráfico de Clientes -->
-                                    <div id="delayedTicketsChart" style="height: 350px;"></div>
-
-
-                                    <!--end::Gráfico de Clientes-->
-                                </div>
-                                <!--end::Body-->
-                            </div>
-                        </div>
-                        <!--end::Col Izquierdo-->
-                        <!--begin::Col Derecho-->
-                        <div class="col-xxl-6">
-                            <div class="card card-flush h-md-100">
-                                <!--begin::Header-->
-                                <div class="card-header pt-5">
-                                    <h3 class="card-title d-flex flex-column">
-                                        <span class="card-label fw-bold fs-3 mb-1">Tiempo Promedio Atención de
-                                            Tickets</span>
-                                        <span class="text-muted fw-semibold fs-7">Promedio de atención de tickets</span>
-                                    </h3>
-                                </div>
-                                <!--end::Header-->
-                                <!--begin::Body-->
-                                <div class="card-body">
-                                    <!--begin::Gráfico de Categorías-->
-
-                                    <div id="avgResponseTimeChart" style="height: 350px;"></div>
-                                    <!--end::Gráfico de Categorías-->
-                                </div>
-                                <!--end::Body-->
-                            </div>
-                        </div>
-                        <!--end::Col Derecho-->
-                    </div>
 
                     <!--begin::Row-->
                     <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
@@ -435,6 +371,8 @@ if ($cantidadTickets > 0) {
                         </div>
                     </div>
 
+                    <?php endif; ?>
+
 
                     <div class="card mb-5 mb-xl-8">
                         <!-- Botones de filtro -->
@@ -506,7 +444,7 @@ if ($cantidadTickets > 0) {
     <!--end::Modals-->
     <!--begin::Javascript-->
     <script>
-    var hostUrl = "/public/assets/";
+    var hostUrl = "/Kima/public/assets/";
 
     $(".btnFiltroFecha").on("click", function() {
         // Quitar clases activas a todos
@@ -582,7 +520,7 @@ if ($cantidadTickets > 0) {
 
         function cargarTicketsUser() {
             $.ajax({
-                url: `/app/Controllers/InicioController.php?action=getTicketsByUser`,
+                url: `/Kima/app/Controllers/InicioController.php?action=getTicketsByUser`,
                 type: "GET",
                 dataType: "json",
                 success: function(res) {
@@ -609,7 +547,7 @@ if ($cantidadTickets > 0) {
             const ticketId = $(this).data("id");
 
             $.ajax({
-                url: `/app/Controllers/InicioController.php?action=getTicketDetalle&id=${ticketId}`,
+                url: `/Kima/app/Controllers/InicioController.php?action=getTicketDetalle&id=${ticketId}`,
                 type: "GET",
                 dataType: "json",
                 success: function(res) {
@@ -649,7 +587,7 @@ if ($cantidadTickets > 0) {
                                 documentosHtml += `
         <li class="list-group-item d-flex justify-content-between align-items-center">
             <span>${doc.NombreArchivo}</span>
-            <a href="/public/${doc.RutaArchivo}" target="_blank" class="btn btn-sm btn-primary">Ver</a>
+            <a href="/Kima/public/${doc.RutaArchivo}" target="_blank" class="btn btn-sm btn-primary">Ver</a>
         </li>`;
                             });
                         } else {
@@ -716,7 +654,7 @@ if ($cantidadTickets > 0) {
 
         function cargarTickets(filtro = 'mes') {
             $.ajax({
-                url: `/app/Controllers/InicioController.php?action=getTicketsByDateRange&filtro=${filtro}`,
+                url: `/Kima/app/Controllers/InicioController.php?action=getTicketsByDateRange&filtro=${filtro}`,
                 type: "GET",
                 dataType: "json",
                 success: function(res) {
@@ -749,7 +687,7 @@ if ($cantidadTickets > 0) {
     $(document).ready(function() {
 
         function cargarNotas() {
-            $.get("/app/Controllers/NotasController.php?action=listarNotas", function(res) {
+            $.get("/Kima/app/Controllers/NotasController.php?action=listarNotas", function(res) {
                 if (res.status === "success") {
                     let html = "";
 
@@ -823,7 +761,7 @@ if ($cantidadTickets > 0) {
             }
 
             $.ajax({
-                url: "/app/Controllers/NotasController.php?action=guardar",
+                url: "/Kima/app/Controllers/NotasController.php?action=guardar",
                 type: "POST",
                 data: {
                     id,
@@ -852,7 +790,7 @@ if ($cantidadTickets > 0) {
         $(document).on("click", ".btnEditarNota", function() {
             let id = $(this).data("id");
 
-            $.get(`/app/Controllers/NotasController.php?action=obtenerNota&id=${id}`, function(
+            $.get(`/Kima/app/Controllers/NotasController.php?action=obtenerNota&id=${id}`, function(
                 res) {
                 if (res.status === "success") {
                     let nota = res.data;
@@ -872,7 +810,7 @@ if ($cantidadTickets > 0) {
             let id = $(this).data("id");
 
             if (confirm("¿Estás seguro de eliminar esta nota?")) {
-                $.post("/app/Controllers/NotasController.php?action=eliminar", {
+                $.post("/Kima/app/Controllers/NotasController.php?action=eliminar", {
                     id
                 }, function(res) {
                     if (res.status === "success") {
@@ -889,451 +827,232 @@ if ($cantidadTickets > 0) {
     });
     </script>
 
+    <?php if ($_SESSION['rol'] === 'Admin'): ?>
+
     <script>
     am5.ready(function() {
-        // 📌 Gráfico 1: Tickets por Estado
-        var rootTickets = am5.Root.new("ticketsChart");
-        rootTickets.setThemes([am5themes_Animated.new(rootTickets)]);
 
-        var chartTickets = rootTickets.container.children.push(
-            am5percent.PieChart.new(rootTickets, {
-                layout: rootTickets.verticalLayout
-            })
-        );
+            // 📌 Gráfico 2: Tickets por Categoría
+            var rootCategories = am5.Root.new("ticketsByCategoryChart");
+            rootCategories.setThemes([am5themes_Animated.new(rootCategories)]);
 
-        var seriesTickets = chartTickets.series.push(
-            am5percent.PieSeries.new(rootTickets, {
-                valueField: "value",
-                categoryField: "category"
-            })
-        );
-
-        // 🔥 Cargar datos dinámicos desde PHP
-        fetch("/app/Controllers/InicioController.php?action=getTicketsByState")
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "success") {
-                    seriesTickets.data.setAll(data.data);
-                } else {
-                    console.error("⚠️ No se encontraron datos de tickets.");
-                }
-            })
-            .catch(error => console.error("❌ Error al cargar los datos de tickets.", error));
-
-        seriesTickets.labels.template.setAll({
-            text: "{category}: {valuePercentTotal.formatNumber('0.0')}%",
-            fontSize: 14,
-            fontWeight: "bold",
-            fill: am5.color("#555"),
-            centerX: am5.percent(50),
-            centerY: am5.percent(50)
-        });
-
-        chartTickets.appear(1000, 100);
-
-        // 📌 Gráfico 2: Tickets por Categoría
-        var rootCategories = am5.Root.new("ticketsByCategoryChart");
-        rootCategories.setThemes([am5themes_Animated.new(rootCategories)]);
-
-        var chartCategories = rootCategories.container.children.push(
-            am5percent.PieChart.new(rootCategories, {
-                layout: rootCategories.verticalLayout
-            })
-        );
-
-        var seriesCategories = chartCategories.series.push(
-            am5percent.PieSeries.new(rootCategories, {
-                valueField: "value",
-                categoryField: "category"
-            })
-        );
-
-        // ✅ Obtener datos desde PHP (AJAX)
-        fetch("/app/Controllers/InicioController.php?action=getTicketsByCategory")
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "success") {
-                    seriesCategories.data.setAll(data.data);
-                } else {
-                    console.error("❌ Error al obtener datos:", data.message);
-                }
-            })
-            .catch(error => console.error("❌ Error en la petición AJAX:", error));
-
-        seriesCategories.slices.template.setAll({
-            tooltipText: "{category}: {valuePercentTotal.formatNumber('0.0')}% ({value})"
-        });
-
-        seriesCategories.labels.template.setAll({
-            text: "{category} ({valuePercentTotal.formatNumber('0.0')}%)"
-        });
-
-        chartCategories.appear(1000, 100);
-
-        // 📌 Gráfico 3: Tickets con Mayor Tiempo de Resolución (Gráfico de Barras)
-        var rootDelayTime = am5.Root.new("delayedTicketsChart");
-        rootDelayTime.setThemes([am5themes_Animated.new(rootDelayTime)]);
-
-        var chartDelay = rootDelayTime.container.children.push(
-            am5xy.XYChart.new(rootDelayTime, {
-                panX: true,
-                panY: false,
-                wheelX: "panX",
-                wheelY: "zoomX",
-                layout: rootDelayTime.verticalLayout
-            })
-        );
-
-        // ✅ Definir el eje X (Tickets)
-        var xAxisDelay = chartDelay.xAxes.push(
-            am5xy.CategoryAxis.new(rootDelayTime, {
-                categoryField: "ID",
-                renderer: am5xy.AxisRendererX.new(rootDelayTime, {
-                    minGridDistance: 30
+            var chartCategories = rootCategories.container.children.push(
+                am5percent.PieChart.new(rootCategories, {
+                    layout: rootCategories.verticalLayout
                 })
-            })
-        );
+            );
 
-        // ✅ Definir el eje Y (Horas Totales en decimal)
-        var yAxisDelay = chartDelay.yAxes.push(
-            am5xy.ValueAxis.new(rootDelayTime, {
-                renderer: am5xy.AxisRendererY.new(rootDelayTime, {})
-            })
-        );
+            var seriesCategories = chartCategories.series.push(
+                am5percent.PieSeries.new(rootCategories, {
+                    valueField: "value",
+                    categoryField: "category"
+                })
+            );
 
-        // ✅ Crear la serie de columnas
-        var seriesDelay = chartDelay.series.push(
-            am5xy.ColumnSeries.new(rootDelayTime, {
-                name: "Tiempo en Horas",
-                xAxis: xAxisDelay,
-                yAxis: yAxisDelay,
-                valueYField: "horas_totales",
-                categoryXField: "ID"
-            })
-        );
+            // ✅ Obtener datos desde PHP (AJAX)
+            fetch("/Kima/app/Controllers/InicioController.php?action=getTicketsByCategory")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        seriesCategories.data.setAll(data.data);
+                    } else {
+                        console.error("❌ Error al obtener datos:", data.message);
+                    }
+                })
+                .catch(error => console.error("❌ Error en la petición AJAX:", error));
 
-        // ✅ Personalizar las columnas (Barras)
-        seriesDelay.columns.template.setAll({
-            strokeWidth: 2,
-            stroke: am5.color(0x000000), // Borde negro
-            fillOpacity: 0.8
-        });
-
-        // ✅ Agregar etiquetas dentro de las barras con el tiempo formateado y la alerta "En atraso"
-        seriesDelay.bullets.push(function(root, series, dataItem) {
-            let tiempoProceso = dataItem.dataContext.tiempo_proceso;
-            let segundosEnProceso = dataItem.dataContext.segundos_en_proceso;
-
-            let container = am5.Container.new(
-                root, {}); // 📌 Contenedor para manejar múltiples etiquetas
-
-            // 🔹 Etiqueta de tiempo en negro
-            let labelTiempo = am5.Label.new(root, {
-                text: tiempoProceso,
-                fill: am5.color(0x000000), // Negro
-                centerX: am5.percent(50),
-                centerY: am5.percent(-10),
-                fontSize: 12,
-                fontWeight: "bold"
+            seriesCategories.slices.template.setAll({
+                tooltipText: "{category}: {valuePercentTotal.formatNumber('0.0')}% ({value})"
             });
 
-            container.children.push(labelTiempo); // ✅ Se agrega al contenedor
+            seriesCategories.labels.template.setAll({
+                text: "{category} ({valuePercentTotal.formatNumber('0.0')}%)"
+            });
 
-            // 🔥 Si el ticket lleva más de 4 horas (14400 segundos), agregar "⚠️ En atraso"
-            if (segundosEnProceso > 14400) {
-                let labelAtraso = am5.Label.new(root, {
-                    text: "⚠️ En atraso",
-                    fill: am5.color(0xff0000), // Rojo
-                    centerX: am5.percent(60),
-                    centerY: am5.percent(-60),
-                    fontSize: 12,
-                    fontWeight: "bold"
+            chartCategories.appear(1000, 100);
+
+
+
+            // 📌 Gráfico #5: Tickets Cerrados por Responsable
+            var rootUsers = am5.Root.new("ticketsClosedByUserChart");
+            rootUsers.setThemes([am5themes_Animated.new(rootUsers)]);
+
+            var chartUser = rootUsers.container.children.push(
+                am5xy.XYChart.new(rootUsers, {
+                    panX: true,
+                    panY: false,
+                    wheelX: "panX",
+                    wheelY: "zoomX",
+                    layout: rootUsers.verticalLayout
+                })
+            );
+
+            // 📌 Crear ejes X (Usuarios) y Y (Cantidad de tickets)
+            var xAxisUser = chartUser.xAxes.push(
+                am5xy.CategoryAxis.new(rootUsers, {
+                    categoryField: "label", // Asegurar que el campo coincide con la respuesta
+                    renderer: am5xy.AxisRendererX.new(rootUsers, {
+                        minGridDistance: 30
+                    })
+                })
+            );
+
+            var yAxisUser = chartUser.yAxes.push(
+                am5xy.ValueAxis.new(rootUsers, {
+                    min: 0,
+                    extraMax: 0.5, // Asegurar que hay espacio para las barras
+                    renderer: am5xy.AxisRendererY.new(rootUsers, {})
+                })
+            );
+
+            // 📌 Crear la serie de barras
+            var seriesUser = chartUser.series.push(
+                am5xy.ColumnSeries.new(rootUsers, {
+                    name: "Tickets Cerrados",
+                    xAxis: xAxisUser,
+                    yAxis: yAxisUser,
+                    valueYField: "value", // Asegurar que coincide con la respuesta del backend
+                    categoryXField: "label",
+                    tooltip: am5.Tooltip.new(rootUsers, {
+                        labelText: "{label}: {valueY} tickets"
+                    })
+                })
+            );
+
+            // 📌 Personalizar las barras
+            seriesUser.columns.template.setAll({
+                cornerRadiusTL: 5,
+                cornerRadiusTR: 5,
+                strokeOpacity: 0
+            });
+
+            // 📌 Agregar etiquetas dentro de las barras con la cantidad de tickets cerrados
+            seriesUser.bullets.push(function(root, series, dataItem) {
+                return am5.Bullet.new(root, {
+                    locationY: 0.5,
+                    sprite: am5.Label.new(root, {
+                        text: dataItem.dataContext.value
+                            .toString(), // 🔥 Accede correctamente al valor
+                        fill: am5.color(0x000000), // Negro
+                        centerX: am5.percent(50),
+                        centerY: am5.percent(50),
+                        fontSize: 14,
+                        fontWeight: "bold"
+                    })
                 });
-
-                container.children.push(labelAtraso); // ✅ Se agrega al contenedor
-            }
-
-            return am5.Bullet.new(root, {
-                locationY: 1,
-                sprite: container // 📌 Se usa el contenedor con ambas etiquetas
             });
-        });
-
-        // ✅ Cargar datos dinámicos
-        fetch("/app/Controllers/InicioController.php?action=getDelayedTickets")
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "success") {
-                    xAxisDelay.data.setAll(data.data);
-                    seriesDelay.data.setAll(data.data);
-                } else {
-                    console.error("❌ Error al obtener datos:", data.message);
-                }
-            })
-            .catch(error => console.error("❌ Error en AJAX:", error));
-
-        chartDelay.appear(1000, 100);
 
 
-        // 📌 Gráfico 4: Tickets con Tiempo Promedio de Atención
-        var rootAvgTime = am5.Root.new("avgResponseTimeChart");
-        rootAvgTime.setThemes([am5themes_Animated.new(rootAvgTime)]);
 
-        var chartAverage = rootAvgTime.container.children.push(
-            am5xy.XYChart.new(rootAvgTime, {
-                panX: true,
-                panY: false,
-                wheelX: "panX",
-                wheelY: "zoomX",
-                layout: rootAvgTime.verticalLayout
-            })
-        );
+            // 🔥 Obtener datos desde PHP (AJAX)
+            fetch("/Kima/app/Controllers/InicioController.php?action=getTicketsClosedByUser")
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Datos recibidos:", data); // Verifica en consola
 
-        var yAxis = chartAverage.yAxes.push(
-            am5xy.ValueAxis.new(rootAvgTime, {
-                renderer: am5xy.AxisRendererY.new(rootAvgTime, {})
-            })
-        );
+                    if (data.status === "success" && data.data.length > 0) {
+                        // Asegurar que 'value' es un número en el frontend por si el backend aún envía strings
+                        data.data = data.data.map(item => ({
+                            label: item.label,
+                            value: Number(item.value) // 🔥 Convertir a número explícitamente
+                        }));
 
-        var xAxis = chartAverage.xAxes.push(
-            am5xy.CategoryAxis.new(rootAvgTime, {
-                categoryField: "label",
-                renderer: am5xy.AxisRendererX.new(rootAvgTime, {})
-            })
-        );
-
-        var seriesAverage = chartAverage.series.push(
-            am5xy.ColumnSeries.new(rootAvgTime, {
-                name: "Tiempo Promedio",
-                xAxis: xAxis,
-                yAxis: yAxis,
-                valueYField: "value",
-                categoryXField: "label"
-            })
-        );
-
-        // 📌 Agregar etiquetas dentro de la barra con el tiempo promedio en horas
-        seriesAverage.bullets.push(function(root, series, dataItem) {
-            return am5.Bullet.new(root, {
-                locationY: 0.5, // Centrar en la barra
-                sprite: am5.Label.new(root, {
-                    text: dataItem.dataContext.value.toFixed(2) +
-                        "h", // Mostrar el valor con 2 decimales y "h"
-                    fill: am5.color(0x000000), // Color negro
-                    centerX: am5.percent(50),
-                    centerY: am5.percent(50),
-                    fontSize: 14,
-                    fontWeight: "bold"
+                        xAxisUser.data.setAll(data.data);
+                        seriesUser.data.setAll(data.data);
+                    } else {
+                        console.error("❌ No hay datos para mostrar");
+                    }
                 })
+                .catch(error => console.error("❌ Error en AJAX:", error));
+
+
+            // 📌 Animaciones
+            seriesUser.appear(1000);
+            chartUser.appear(1000, 100);
+
+
+            // 📌 Gráfico #6: Progreso de Tickets
+
+            var rootPareto = am5.Root.new("paretoChart");
+            rootPareto.setThemes([am5themes_Animated.new(rootPareto)]);
+
+            var chartPareto = rootPareto.container.children.push(
+                am5xy.XYChart.new(rootPareto, {
+                    panX: true,
+                    panY: false,
+                    wheelX: "panX",
+                    wheelY: "zoomX",
+                    layout: rootPareto.verticalLayout
+                })
+            );
+
+            // 📌 Ejes X y Y (Tickets)
+            var xAxisPareto = chartPareto.xAxes.push(
+                am5xy.CategoryAxis.new(rootPareto, {
+                    categoryField: "category",
+                    renderer: am5xy.AxisRendererX.new(rootPareto, {
+                        minGridDistance: 30
+                    })
+                })
+            );
+
+            var yAxisPareto = chartPareto.yAxes.push(
+                am5xy.ValueAxis.new(rootPareto, {
+                    min: 0,
+                    extraMax: 0.2, // Espacio extra para la etiqueta
+                    renderer: am5xy.AxisRendererY.new(rootPareto, {})
+                })
+            );
+
+            // 📌 **Serie de Barras (Tickets por Estado)**
+            var seriesBarsPareto = chartPareto.series.push(
+                am5xy.ColumnSeries.new(rootPareto, {
+                    name: "Tickets por Estado",
+                    xAxis: xAxisPareto,
+                    yAxis: yAxisPareto,
+                    valueYField: "value",
+                    categoryXField: "category",
+                    tooltip: am5.Tooltip.new(rootPareto, {
+                        labelText: "{category}: {valueY} tickets"
+                    })
+                })
+            );
+
+            // 📌 **Agregar etiquetas dentro de las barras con la cantidad de tickets**
+            seriesBarsPareto.bullets.push(function(root, series, dataItem) {
+                return am5.Bullet.new(root, {
+                    locationY: 0.5,
+                    sprite: am5.Label.new(root, {
+                        text: dataItem.get("valueY")
+                            .toString(), // 🔥 Se obtiene correctamente el valor
+                        fill: am5.color(0x000000), // Negro
+                        centerX: am5.percent(50),
+                        centerY: am5.percent(50),
+                        fontSize: 14,
+                        fontWeight: "bold"
+                    })
+                });
             });
-        });
 
-
-        // ✅ Cargar datos dinámicos
-        fetch("/app/Controllers/InicioController.php?action=getAverageResponseTime")
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "success") {
-                    console.log("Tiempo promedio de atención:", data.promedio);
-
-                    xAxis.data.setAll([{
-                        label: "Tiempo Promedio"
-                    }]);
-                    seriesAverage.data.setAll([{
-                        label: "Tiempo Promedio",
-                        value: data.promedio
-                    }]); // ✅ Asignar valor correcto
-
-                } else {
-                    console.error("❌ Error al obtener datos:", data.message);
-                }
-            })
-            .catch(error => console.error("❌ Error en AJAX:", error));
-
-
-        chartAverage.appear(1000, 100);
-
-
-
-        // 📌 Gráfico #5: Tickets Cerrados por Responsable
-        var rootUsers = am5.Root.new("ticketsClosedByUserChart");
-        rootUsers.setThemes([am5themes_Animated.new(rootUsers)]);
-
-        var chartUser = rootUsers.container.children.push(
-            am5xy.XYChart.new(rootUsers, {
-                panX: true,
-                panY: false,
-                wheelX: "panX",
-                wheelY: "zoomX",
-                layout: rootUsers.verticalLayout
-            })
-        );
-
-        // 📌 Crear ejes X (Usuarios) y Y (Cantidad de tickets)
-        var xAxisUser = chartUser.xAxes.push(
-            am5xy.CategoryAxis.new(rootUsers, {
-                categoryField: "label", // Asegurar que el campo coincide con la respuesta
-                renderer: am5xy.AxisRendererX.new(rootUsers, {
-                    minGridDistance: 30
+            // 📌 **Cargar datos dinámicamente**
+            fetch("/Kima/app/Controllers/InicioController.php?action=getTicketsPareto")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        xAxisPareto.data.setAll(data.data);
+                        seriesBarsPareto.data.setAll(data.data);
+                    } else {
+                        console.error("❌ Error al obtener datos:", data.message);
+                    }
                 })
-            })
-        );
+                .catch(error => console.error("❌ Error en AJAX:", error));
 
-        var yAxisUser = chartUser.yAxes.push(
-            am5xy.ValueAxis.new(rootUsers, {
-                min: 0,
-                extraMax: 0.5, // Asegurar que hay espacio para las barras
-                renderer: am5xy.AxisRendererY.new(rootUsers, {})
-            })
-        );
-
-        // 📌 Crear la serie de barras
-        var seriesUser = chartUser.series.push(
-            am5xy.ColumnSeries.new(rootUsers, {
-                name: "Tickets Cerrados",
-                xAxis: xAxisUser,
-                yAxis: yAxisUser,
-                valueYField: "value", // Asegurar que coincide con la respuesta del backend
-                categoryXField: "label",
-                tooltip: am5.Tooltip.new(rootUsers, {
-                    labelText: "{label}: {valueY} tickets"
-                })
-            })
-        );
-
-        // 📌 Personalizar las barras
-        seriesUser.columns.template.setAll({
-            cornerRadiusTL: 5,
-            cornerRadiusTR: 5,
-            strokeOpacity: 0
-        });
-
-        // 📌 Agregar etiquetas dentro de las barras con la cantidad de tickets cerrados
-        seriesUser.bullets.push(function(root, series, dataItem) {
-            return am5.Bullet.new(root, {
-                locationY: 0.5,
-                sprite: am5.Label.new(root, {
-                    text: dataItem.dataContext.value
-                        .toString(), // 🔥 Accede correctamente al valor
-                    fill: am5.color(0x000000), // Negro
-                    centerX: am5.percent(50),
-                    centerY: am5.percent(50),
-                    fontSize: 14,
-                    fontWeight: "bold"
-                })
-            });
-        });
-
-
-
-        // 🔥 Obtener datos desde PHP (AJAX)
-        fetch("/app/Controllers/InicioController.php?action=getTicketsClosedByUser")
-            .then(response => response.json())
-            .then(data => {
-                console.log("Datos recibidos:", data); // Verifica en consola
-
-                if (data.status === "success" && data.data.length > 0) {
-                    // Asegurar que 'value' es un número en el frontend por si el backend aún envía strings
-                    data.data = data.data.map(item => ({
-                        label: item.label,
-                        value: Number(item.value) // 🔥 Convertir a número explícitamente
-                    }));
-
-                    xAxisUser.data.setAll(data.data);
-                    seriesUser.data.setAll(data.data);
-                } else {
-                    console.error("❌ No hay datos para mostrar");
-                }
-            })
-            .catch(error => console.error("❌ Error en AJAX:", error));
-
-
-        // 📌 Animaciones
-        seriesUser.appear(1000);
-        chartUser.appear(1000, 100);
-
-
-        // 📌 Gráfico #6: Progreso de Tickets
-
-        var rootPareto = am5.Root.new("paretoChart");
-        rootPareto.setThemes([am5themes_Animated.new(rootPareto)]);
-
-        var chartPareto = rootPareto.container.children.push(
-            am5xy.XYChart.new(rootPareto, {
-                panX: true,
-                panY: false,
-                wheelX: "panX",
-                wheelY: "zoomX",
-                layout: rootPareto.verticalLayout
-            })
-        );
-
-        // 📌 Ejes X y Y (Tickets)
-        var xAxisPareto = chartPareto.xAxes.push(
-            am5xy.CategoryAxis.new(rootPareto, {
-                categoryField: "category",
-                renderer: am5xy.AxisRendererX.new(rootPareto, {
-                    minGridDistance: 30
-                })
-            })
-        );
-
-        var yAxisPareto = chartPareto.yAxes.push(
-            am5xy.ValueAxis.new(rootPareto, {
-                min: 0,
-                extraMax: 0.2, // Espacio extra para la etiqueta
-                renderer: am5xy.AxisRendererY.new(rootPareto, {})
-            })
-        );
-
-        // 📌 **Serie de Barras (Tickets por Estado)**
-        var seriesBarsPareto = chartPareto.series.push(
-            am5xy.ColumnSeries.new(rootPareto, {
-                name: "Tickets por Estado",
-                xAxis: xAxisPareto,
-                yAxis: yAxisPareto,
-                valueYField: "value",
-                categoryXField: "category",
-                tooltip: am5.Tooltip.new(rootPareto, {
-                    labelText: "{category}: {valueY} tickets"
-                })
-            })
-        );
-
-        // 📌 **Agregar etiquetas dentro de las barras con la cantidad de tickets**
-        seriesBarsPareto.bullets.push(function(root, series, dataItem) {
-            return am5.Bullet.new(root, {
-                locationY: 0.5,
-                sprite: am5.Label.new(root, {
-                    text: dataItem.get("valueY")
-                        .toString(), // 🔥 Se obtiene correctamente el valor
-                    fill: am5.color(0x000000), // Negro
-                    centerX: am5.percent(50),
-                    centerY: am5.percent(50),
-                    fontSize: 14,
-                    fontWeight: "bold"
-                })
-            });
-        });
-
-        // 📌 **Cargar datos dinámicamente**
-        fetch("/app/Controllers/InicioController.php?action=getTicketsPareto")
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "success") {
-                    xAxisPareto.data.setAll(data.data);
-                    seriesBarsPareto.data.setAll(data.data);
-                } else {
-                    console.error("❌ Error al obtener datos:", data.message);
-                }
-            })
-            .catch(error => console.error("❌ Error en AJAX:", error));
-
-        chartPareto.appear(1000, 100);
+            chartPareto.appear(1000, 100);
 
     });
     </script>
 
+    <?php endif; ?>
     <script>
     const icono = document.querySelector('#menu_inicio').previousElementSibling.querySelector('i');
     const span = document.getElementById('menu_inicio');
@@ -1342,12 +1061,12 @@ if ($cantidadTickets > 0) {
     span.style.color = 'white';
     </script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="/public/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="/public/assets/js/scripts.bundle.js"></script>
+    <script src="/Kima/public/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/Kima/public/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
-    <script src="/public/assets/plugins/custom/vis-timeline/vis-timeline.bundle.js"></script>
+    <script src="/Kima/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="/Kima/public/assets/plugins/custom/vis-timeline/vis-timeline.bundle.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
@@ -1355,40 +1074,40 @@ if ($cantidadTickets > 0) {
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="/public/assets/js/charts-ra.js"></script>
-    <script src="/Kimav/Kima2/assets/js/widgets.bundle.js"></script>
-    <script src="/public/assets/js/custom/widgets.js"></script>
-    <script src="/public/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/create-project/type.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/create-project/budget.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/create-project/settings.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/create-project/team.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/create-project/targets.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/create-project/files.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/create-project/complete.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/create-project/main.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/create-app.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/new-address.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/users-search.js"></script>
+    <script src="/Kima/public/assets/js/charts-ra.js"></script>
+    <script src="/Kimav/assets/js/widgets.bundle.js"></script>
+    <script src="/Kima/public/assets/js/custom/widgets.js"></script>
+    <script src="/Kima/public/assets/js/custom/apps/chat/chat.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/create-project/type.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/create-project/budget.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/create-project/settings.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/create-project/team.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/create-project/targets.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/create-project/files.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/create-project/complete.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/create-project/main.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/create-app.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/new-address.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/users-search.js"></script>
 
     <script>
-    var hostUrl = "/public/assets/";
+    var hostUrl = "/Kima/public/assets/";
     </script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="/public/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="/public/assets/js/scripts.bundle.js"></script>
+    <script src="/Kima/public/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/Kima/public/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="/Kima/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="/public/assets/js/widgets.bundle.js"></script>
-    <script src="/public/assets/js/custom/widgets.js"></script>
-    <script src="/public/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/create-app.js"></script>
-    <script src="/public/assets/js/custom/utilities/modals/users-search.js"></script>
+    <script src="/Kima/public/assets/js/widgets.bundle.js"></script>
+    <script src="/Kima/public/assets/js/custom/widgets.js"></script>
+    <script src="/Kima/public/assets/js/custom/apps/chat/chat.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/create-app.js"></script>
+    <script src="/Kima/public/assets/js/custom/utilities/modals/users-search.js"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 </body>
