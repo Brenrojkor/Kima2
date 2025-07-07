@@ -44,7 +44,7 @@ try {
                                     <!--begin::Avatar-->
                                     <div class="symbol symbol-150px symbol-circle mb-7 position-relative">
                                         <img id="img_perfil"
-                                            src="<?= $cliente['ImagenPerfil'] ? '/Kima/uploads/usuarios/' . $cliente['ImagenPerfil'] : '/Kima/public/assets/media/avatars/cuenta.png' ?>"
+                                            src="<?= $cliente['ImagenPerfil'] ? '/uploads/usuarios/' . $cliente['ImagenPerfil'] : '/public/assets/media/avatars/cuenta.png' ?>"
                                             alt="Perfil" class="w-100 h-100">
 
                                         <!-- Botón de lápiz -->
@@ -111,7 +111,7 @@ try {
                                     href="#kt_ecommerce_customer_overview" aria-selected="true" role="tab">General</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a href="/Kima/app/Views/Usuarios.php" class="boton-gris">Ir a listado</a>
+                                <a href="/app/Views/Usuarios.php" class="boton-gris">Ir a listado</a>
 
 
                                 <style>
@@ -749,7 +749,7 @@ try {
             <div class="modal fade" id="modalCambiarFoto" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <form class="modal-content" id="formCambiarFoto" enctype="multipart/form-data" method="POST"
-                        action="/Kima/app/Controllers/UsuariosController.php?action=actualizarFoto">
+                        action="/app/Controllers/UsuariosController.php?action=actualizarFoto">
                         <div class="modal-header">
                             <h5 class="modal-title">Cambiar Foto de Perfil</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -773,7 +773,7 @@ try {
     </div>
     <!--begin::Javascript-->
     <script>
-    var hostUrl = "/Kima/public/assets/";
+    var hostUrl = "/public/assets/";
 
 
     $('#formCambiarPassword').on('submit', function(e) {
@@ -782,7 +782,7 @@ try {
         let formData = $(this).serialize();
 
         $.ajax({
-            url: '/Kima/app/Controllers/UsuariosController.php?action=cambiarPassword',
+            url: '/app/Controllers/UsuariosController.php?action=cambiarPassword',
             type: 'POST',
             data: formData,
             success: function(response) {
@@ -815,20 +815,20 @@ try {
     span.style.color = 'white';
     </script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="/Kima/public/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="/Kima/public/assets/js/scripts.bundle.js"></script>
+    <script src="/public/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/public/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="/Kima/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="/Kima/public/assets/js/custom/apps/file-manager/list.js"></script>
-    <script src="/Kima/public/assets/js/widgets.bundle.js"></script>
-    <script src="/Kima/public/assets/js/custom/widgets.js"></script>
-    <script src="/Kima/public/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/create-app.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/users-search.js"></script>
+    <script src="/public/assets/js/custom/apps/file-manager/list.js"></script>
+    <script src="/public/assets/js/widgets.bundle.js"></script>
+    <script src="/public/assets/js/custom/widgets.js"></script>
+    <script src="/public/assets/js/custom/apps/chat/chat.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/create-app.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/users-search.js"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 </body>

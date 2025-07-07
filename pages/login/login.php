@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "/Kima/config/database.php"; // Conexión con SQL Server
+require_once "/config/database.php"; // Conexión con SQL Server
 
 $error = '';
 
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['darkmode'] = $user['darkmode'];
 
             // Redirigir al usuario a index.php
-            header('Location: /Kima/index.php');
+            header('Location: /index.php');
             exit();
         } else {
             $error = "❌ Contraseña incorrecta.";
@@ -44,7 +44,7 @@ $title = "Iniciar Sesión"; // Título dinámico
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-    <link href="/Kima/assets/css/style.bundle.css" rel="stylesheet">
+    <link href="/assets/css/style.bundle.css" rel="stylesheet">
 </head>
 <body>
     <div class="d-flex flex-column flex-root vh-100">

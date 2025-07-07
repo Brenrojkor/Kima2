@@ -72,7 +72,7 @@ try {
                 <div id="kt_app_content_container" class="app-container container-xxl">
                     <!--begin::Card-->
                     <div class="card card-flush pb-0 bgi-position-y-center bgi-no-repeat mb-10"
-                        style="background-size: auto calc(100% + 10rem); background-position-x: 100%; background-image: url('/Kima/assets/media/illustrations/sketchy-1/4.png')">
+                        style="background-size: auto calc(100% + 10rem); background-position-x: 100%; background-image: url('/assets/media/illustrations/sketchy-1/4.png')">
                         <!--begin::Card header-->
                         <div class="card-header pt-10">
                             <div class="d-flex align-items-center">
@@ -224,7 +224,7 @@ try {
 
     function cargarCarpetasTipoAcordeon() {
         $.ajax({
-            url: "/Kima/app/Controllers/ComunicadosController.php?action=obtenerCarpetasConArchivos",
+            url: "/app/Controllers/ComunicadosController.php?action=obtenerCarpetasConArchivos",
             type: "GET",
             dataType: "json",
             success: function(response) {
@@ -310,7 +310,7 @@ try {
         $select.empty(); // Limpiar
 
         $.ajax({
-            url: '/Kima/app/Controllers/ComunicadosController.php?action=listarArchivos',
+            url: '/app/Controllers/ComunicadosController.php?action=listarArchivos',
             method: 'GET',
             dataType: 'json',
             success: function(res) {
@@ -338,7 +338,7 @@ try {
 
 
         $.ajax({
-            url: '/Kima/app/Controllers/ComunicadosController.php?action=crearCarpetaConArchivos',
+            url: '/app/Controllers/ComunicadosController.php?action=crearCarpetaConArchivos',
             type: 'POST',
             data: formData,
             contentType: false,
@@ -370,7 +370,7 @@ try {
                             }
 
                             $.ajax({
-                                url: "/Kima/app/Controllers/ComunicadosController.php?action=subirArchivo",
+                                url: "/app/Controllers/ComunicadosController.php?action=subirArchivo",
                                 type: "POST",
                                 data: formData,
                                 contentType: false,
@@ -451,7 +451,7 @@ try {
 
         if (nuevoNombre && nuevoNombre !== nombreActual) {
             $.ajax({
-                url: "/Kima/app/Controllers/ComunicadosController.php?action=renombrarComunicado",
+                url: "/app/Controllers/ComunicadosController.php?action=renombrarComunicado",
                 type: "POST",
                 data: {
                     id: id,
@@ -483,7 +483,7 @@ try {
         if (confirm(
                 "⚠️ ¿Estás seguro de que deseas eliminar esta carpeta y los archivos dentro de la misma?")) {
             $.ajax({
-                url: "/Kima/app/Controllers/ComunicadosController.php?action=eliminarComunicado",
+                url: "/app/Controllers/ComunicadosController.php?action=eliminarComunicado",
                 type: "POST",
                 data: {
                     id: id,

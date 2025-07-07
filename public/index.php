@@ -80,7 +80,7 @@ if ($cantidadTickets > 0) {
                         </button>
 
 
-                        <a href="/Kima/app/Views/tarifario.php" class="btn btn-sm fw-bold btn-primary"><i
+                        <a href="/app/Views/tarifario.php" class="btn btn-sm fw-bold btn-primary"><i
                                 class="fa-solid fa-plus"></i>Agregar servicio tarifario</a>
 
                     </div>
@@ -444,7 +444,7 @@ if ($cantidadTickets > 0) {
     <!--end::Modals-->
     <!--begin::Javascript-->
     <script>
-    var hostUrl = "/Kima/public/assets/";
+    var hostUrl = "/public/assets/";
 
     $(".btnFiltroFecha").on("click", function() {
         // Quitar clases activas a todos
@@ -520,7 +520,7 @@ if ($cantidadTickets > 0) {
 
         function cargarTicketsUser() {
             $.ajax({
-                url: `/Kima/app/Controllers/InicioController.php?action=getTicketsByUser`,
+                url: `/app/Controllers/InicioController.php?action=getTicketsByUser`,
                 type: "GET",
                 dataType: "json",
                 success: function(res) {
@@ -547,7 +547,7 @@ if ($cantidadTickets > 0) {
             const ticketId = $(this).data("id");
 
             $.ajax({
-                url: `/Kima/app/Controllers/InicioController.php?action=getTicketDetalle&id=${ticketId}`,
+                url: `/app/Controllers/InicioController.php?action=getTicketDetalle&id=${ticketId}`,
                 type: "GET",
                 dataType: "json",
                 success: function(res) {
@@ -587,7 +587,7 @@ if ($cantidadTickets > 0) {
                                 documentosHtml += `
         <li class="list-group-item d-flex justify-content-between align-items-center">
             <span>${doc.NombreArchivo}</span>
-            <a href="/Kima/public/${doc.RutaArchivo}" target="_blank" class="btn btn-sm btn-primary">Ver</a>
+            <a href="/public/${doc.RutaArchivo}" target="_blank" class="btn btn-sm btn-primary">Ver</a>
         </li>`;
                             });
                         } else {
@@ -654,7 +654,7 @@ if ($cantidadTickets > 0) {
 
         function cargarTickets(filtro = 'mes') {
             $.ajax({
-                url: `/Kima/app/Controllers/InicioController.php?action=getTicketsByDateRange&filtro=${filtro}`,
+                url: `/app/Controllers/InicioController.php?action=getTicketsByDateRange&filtro=${filtro}`,
                 type: "GET",
                 dataType: "json",
                 success: function(res) {
@@ -687,7 +687,7 @@ if ($cantidadTickets > 0) {
     $(document).ready(function() {
 
         function cargarNotas() {
-            $.get("/Kima/app/Controllers/NotasController.php?action=listarNotas", function(res) {
+            $.get("/app/Controllers/NotasController.php?action=listarNotas", function(res) {
                 if (res.status === "success") {
                     let html = "";
 
@@ -761,7 +761,7 @@ if ($cantidadTickets > 0) {
             }
 
             $.ajax({
-                url: "/Kima/app/Controllers/NotasController.php?action=guardar",
+                url: "/app/Controllers/NotasController.php?action=guardar",
                 type: "POST",
                 data: {
                     id,
@@ -790,7 +790,7 @@ if ($cantidadTickets > 0) {
         $(document).on("click", ".btnEditarNota", function() {
             let id = $(this).data("id");
 
-            $.get(`/Kima/app/Controllers/NotasController.php?action=obtenerNota&id=${id}`, function(
+            $.get(`/app/Controllers/NotasController.php?action=obtenerNota&id=${id}`, function(
                 res) {
                 if (res.status === "success") {
                     let nota = res.data;
@@ -810,7 +810,7 @@ if ($cantidadTickets > 0) {
             let id = $(this).data("id");
 
             if (confirm("¿Estás seguro de eliminar esta nota?")) {
-                $.post("/Kima/app/Controllers/NotasController.php?action=eliminar", {
+                $.post("/app/Controllers/NotasController.php?action=eliminar", {
                     id
                 }, function(res) {
                     if (res.status === "success") {
@@ -850,7 +850,7 @@ if ($cantidadTickets > 0) {
             );
 
             // ✅ Obtener datos desde PHP (AJAX)
-            fetch("/Kima/app/Controllers/InicioController.php?action=getTicketsByCategory")
+            fetch("/app/Controllers/InicioController.php?action=getTicketsByCategory")
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === "success") {
@@ -945,7 +945,7 @@ if ($cantidadTickets > 0) {
 
 
             // 🔥 Obtener datos desde PHP (AJAX)
-            fetch("/Kima/app/Controllers/InicioController.php?action=getTicketsClosedByUser")
+            fetch("/app/Controllers/InicioController.php?action=getTicketsClosedByUser")
                 .then(response => response.json())
                 .then(data => {
                     console.log("Datos recibidos:", data); // Verifica en consola
@@ -1035,7 +1035,7 @@ if ($cantidadTickets > 0) {
             });
 
             // 📌 **Cargar datos dinámicamente**
-            fetch("/Kima/app/Controllers/InicioController.php?action=getTicketsPareto")
+            fetch("/app/Controllers/InicioController.php?action=getTicketsPareto")
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === "success") {
@@ -1061,12 +1061,12 @@ if ($cantidadTickets > 0) {
     span.style.color = 'white';
     </script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="/Kima/public/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="/Kima/public/assets/js/scripts.bundle.js"></script>
+    <script src="/public/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/public/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="/Kima/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
-    <script src="/Kima/public/assets/plugins/custom/vis-timeline/vis-timeline.bundle.js"></script>
+    <script src="/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="/public/assets/plugins/custom/vis-timeline/vis-timeline.bundle.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
@@ -1074,40 +1074,40 @@ if ($cantidadTickets > 0) {
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="/Kima/public/assets/js/charts-ra.js"></script>
-    <script src="/Kimav/assets/js/widgets.bundle.js"></script>
-    <script src="/Kima/public/assets/js/custom/widgets.js"></script>
-    <script src="/Kima/public/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/create-project/type.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/create-project/budget.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/create-project/settings.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/create-project/team.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/create-project/targets.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/create-project/files.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/create-project/complete.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/create-project/main.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/create-app.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/new-address.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/users-search.js"></script>
+    <script src="/public/assets/js/charts-ra.js"></script>
+    <script src="/assets/js/widgets.bundle.js"></script>
+    <script src="/public/assets/js/custom/widgets.js"></script>
+    <script src="/public/assets/js/custom/apps/chat/chat.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/create-project/type.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/create-project/budget.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/create-project/settings.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/create-project/team.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/create-project/targets.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/create-project/files.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/create-project/complete.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/create-project/main.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/create-app.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/new-address.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/users-search.js"></script>
 
     <script>
-    var hostUrl = "/Kima/public/assets/";
+    var hostUrl = "/public/assets/";
     </script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="/Kima/public/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="/Kima/public/assets/js/scripts.bundle.js"></script>
+    <script src="/public/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/public/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="/Kima/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="/Kima/public/assets/js/widgets.bundle.js"></script>
-    <script src="/Kima/public/assets/js/custom/widgets.js"></script>
-    <script src="/Kima/public/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/create-app.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/users-search.js"></script>
+    <script src="/public/assets/js/widgets.bundle.js"></script>
+    <script src="/public/assets/js/custom/widgets.js"></script>
+    <script src="/public/assets/js/custom/apps/chat/chat.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/create-app.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/users-search.js"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 </body>

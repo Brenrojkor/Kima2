@@ -44,7 +44,7 @@ try {
                                     <!--begin::Avatar-->
                                     <div class="symbol symbol-150px symbol-circle mb-7 position-relative">
                                         <img id="img_perfil"
-                                            src="<?= $cliente['ImagenPerfil'] ? '/Kima/uploads/usuarios/' . $cliente['ImagenPerfil'] : '/Kima/public/assets/media/avatars/cuenta.png' ?>"
+                                            src="<?= $cliente['ImagenPerfil'] ? '/uploads/usuarios/' . $cliente['ImagenPerfil'] : '/public/assets/media/avatars/cuenta.png' ?>"
                                             alt="Perfil" class="w-100 h-100">
 
                                         <!-- Botón de lápiz -->
@@ -114,7 +114,7 @@ try {
                                     href="#kt_tab_cotizaciones" aria-selected="false" role="tab">Cotizaciones</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a href="/Kima/app/Views/ListaClientes.php" class="boton-gris">Volver al listado</a>
+                                <a href="/app/Views/ListaClientes.php" class="boton-gris">Volver al listado</a>
 
 
                                 <style>
@@ -634,7 +634,7 @@ try {
                     <div class="modal fade" id="modalCambiarFoto" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <form class="modal-content" id="formCambiarFoto" enctype="multipart/form-data" method="POST"
-                                action="/Kima/app/Controllers/ClienteController.php?action=actualizarFoto">
+                                action="/app/Controllers/ClienteController.php?action=actualizarFoto">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Cambiar Foto de Perfil</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -662,7 +662,7 @@ try {
     </div>
     <!--begin::Javascript-->
     <script>
-    var hostUrl = "/Kima/public/assets/";
+    var hostUrl = "/public/assets/";
     </script>
 
     <script>
@@ -679,7 +679,7 @@ try {
         const clienteID = <?= $idCliente ?>;
 
         $.ajax({
-            url: `/Kima/app/Controllers/TicketController.php?action=obtenerTicketsPorCliente&cliente_id=${clienteID}`,
+            url: `/app/Controllers/TicketController.php?action=obtenerTicketsPorCliente&cliente_id=${clienteID}`,
             method: "GET",
             dataType: "json",
             success: function(response) {
@@ -750,7 +750,7 @@ try {
 
 
         $.ajax({
-            url: `/Kima/app/Controllers/CotizacionesController.php?action=obtenerPorCliente&cliente_id=${clienteID}`,
+            url: `/app/Controllers/CotizacionesController.php?action=obtenerPorCliente&cliente_id=${clienteID}`,
             method: "GET",
             dataType: "json",
             success: function(response) {
@@ -788,7 +788,7 @@ try {
                                 `<a class="text-hover-primary">#${cotizacion.id}</a>`,
                                 fecha,
                                 total,
-                                `<a href="/Kima/app/Controllers/CotizacionesController.php?action=descargarPDF&id=${cotizacion.id}" target="_blank" class="btn btn-icon btn-sm btn-light-danger"><i class="fa fa-file-pdf"></i></a>`
+                                `<a href="/app/Controllers/CotizacionesController.php?action=descargarPDF&id=${cotizacion.id}" target="_blank" class="btn btn-icon btn-sm btn-light-danger"><i class="fa fa-file-pdf"></i></a>`
                             ]);
 
                         });
@@ -811,20 +811,20 @@ try {
     </script>
 
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="/Kima/public/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="/Kima/public/assets/js/scripts.bundle.js"></script>
+    <script src="/public/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/public/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="/Kima/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="/Kima/public/assets/js/custom/apps/file-manager/list.js"></script>
-    <script src="/Kima/public/assets/js/widgets.bundle.js"></script>
-    <script src="/Kima/public/assets/js/custom/widgets.js"></script>
-    <script src="/Kima/public/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/create-app.js"></script>
-    <script src="/Kima/public/assets/js/custom/utilities/modals/users-search.js"></script>
+    <script src="/public/assets/js/custom/apps/file-manager/list.js"></script>
+    <script src="/public/assets/js/widgets.bundle.js"></script>
+    <script src="/public/assets/js/custom/widgets.js"></script>
+    <script src="/public/assets/js/custom/apps/chat/chat.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/create-app.js"></script>
+    <script src="/public/assets/js/custom/utilities/modals/users-search.js"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 </body>

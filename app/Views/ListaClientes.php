@@ -37,7 +37,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title; ?></title>
     <!-- Cargar CSS -->
-    <link href="/Kima/public/assets/css/style.bundle.css" rel="stylesheet">
+    <link href="/public/assets/css/style.bundle.css" rel="stylesheet">
 
 
 </head>
@@ -599,7 +599,7 @@ try {
 
             // Petición AJAX para obtener la información del cliente
             $.ajax({
-                url: "/Kima/app/Controllers/ClienteController.php?action=getClienteById",
+                url: "/app/Controllers/ClienteController.php?action=getClienteById",
                 type: "GET",
                 data: {
                     id: clienteID
@@ -640,7 +640,7 @@ try {
             console.log('formdata', formData);
             $.ajax({
                 type: "POST",
-                url: "/Kima/app/Controllers/ClienteController.php?action=updateCliente",
+                url: "/app/Controllers/ClienteController.php?action=updateCliente",
                 data: formData,
                 dataType: "json",
                 success: function(response) {
@@ -681,7 +681,7 @@ try {
 
             $.ajax({
                 type: "POST",
-                url: "/Kima/app/Controllers/ClienteController.php?action=create",
+                url: "/app/Controllers/ClienteController.php?action=create",
                 data: formData,
                 dataType: "json",
                 success: function(response) {
@@ -710,7 +710,7 @@ try {
 
             // Enviar la petición AJAX para eliminar el cliente
             $.ajax({
-                url: "/Kima/app/Controllers/ClienteController.php?action=deleteCliente",
+                url: "/app/Controllers/ClienteController.php?action=deleteCliente",
                 type: "POST",
                 data: {
                     id: clienteID
@@ -736,7 +736,7 @@ try {
             console.log("Ejecutando cargarClientes()...");
 
             $.ajax({
-                url: "/Kima/app/Controllers/ClienteController.php?action=getAllJson",
+                url: "/app/Controllers/ClienteController.php?action=getAllJson",
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
@@ -759,7 +759,7 @@ try {
                             <td>
                                 <button class="btn btn-icon btn-light-primary btn-edit" data-id="${c.id}"><i class="fa fa-pencil"></i></button>
                                 <button class="btn btn-icon btn-light-danger btn-delete" data-id="${c.id}"><i class="fa fa-trash"></i></button>
-                                <a href="/Kima/app/Views/clientes.php?id=${c.id}" class="btn btn-icon btn-light-info"><i class="fa fa-eye"></i></a>
+                                <a href="/app/Views/clientes.php?id=${c.id}" class="btn btn-icon btn-light-info"><i class="fa fa-eye"></i></a>
                             </td>
                         </tr>`;
                         });
@@ -861,7 +861,7 @@ try {
 
             $.ajax({
                 type: "POST",
-                url: "/Kima/app/Controllers/ClienteController.php?action=create",
+                url: "/app/Controllers/ClienteController.php?action=create",
                 data: formData,
                 dataType: "json",
                 success: function(response) {
@@ -927,7 +927,7 @@ try {
 
 <!--begin::Javascript-->
 <script>
-var hostUrl = "/Kima/public/assets/";
+var hostUrl = "/public/assets/";
 </script>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -943,20 +943,20 @@ var hostUrl = "/Kima/public/assets/";
 
 </script>
 <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-<script src="/Kima/public/assets/plugins/global/plugins.bundle.js"></script>
-<script src="/Kima/public/assets/js/scripts.bundle.js"></script>
+<script src="/public/assets/plugins/global/plugins.bundle.js"></script>
+<script src="/public/assets/js/scripts.bundle.js"></script>
 <!--end::Global Javascript Bundle-->
 <!--begin::Vendors Javascript(used for this page only)-->
-<script src="/Kima/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+<script src="/public/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 <!--end::Vendors Javascript-->
 <!--begin::Custom Javascript(used for this page only)-->
-<script src="/Kima/public/assets/js/custom/apps/file-manager/list.js"></script>
-<script src="/Kima/public/assets/js/widgets.bundle.js"></script>
-<script src="/Kima/public/assets/js/custom/widgets.js"></script>
-<script src="/Kima/public/assets/js/custom/apps/chat/chat.js"></script>
-<script src="/Kima/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-<script src="/Kima/public/assets/js/custom/utilities/modals/create-app.js"></script>
-<script src="/Kima/public/assets/js/custom/utilities/modals/users-search.js"></script>
+<script src="/public/assets/js/custom/apps/file-manager/list.js"></script>
+<script src="/public/assets/js/widgets.bundle.js"></script>
+<script src="/public/assets/js/custom/widgets.js"></script>
+<script src="/public/assets/js/custom/apps/chat/chat.js"></script>
+<script src="/public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+<script src="/public/assets/js/custom/utilities/modals/create-app.js"></script>
+<script src="/public/assets/js/custom/utilities/modals/users-search.js"></script>
 <!--end::Custom Javascript-->
 <!--end::Javascript-->
 </body>

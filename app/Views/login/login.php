@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['darkmode'] = $user['darkmode'] ?? 0;
 
             // Redirigir al usuario a index.php
-            header('Location: /Kima/public/index.php');
+            header('Location: /public/index.php');
             exit();
         } else {
             $error = "❌ Contraseña incorrecta.";
@@ -45,8 +45,8 @@ $title = "Iniciar Sesión"; // Título dinámico
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-    <link href="/Kima/public/assets/css/style.bundle.css" rel="stylesheet">
-    <link rel="icon" href="/Kima/public/assets/media/logos/ticket-de-soporte.png" type="image/svg+xml">
+    <link href="/public/assets/css/style.bundle.css" rel="stylesheet">
+    <link rel="icon" href="/public/assets/media/logos/ticket-de-soporte.png" type="image/svg+xml">
 </head>
 <body>
     <div class="d-flex flex-column flex-root vh-100">
